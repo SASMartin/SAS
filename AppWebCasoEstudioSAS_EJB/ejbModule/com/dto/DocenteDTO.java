@@ -68,6 +68,4 @@ public class DocenteDTO extends PersonaDTO implements Serializable {
 		
 	}
 
-
-
 }
