@@ -4,7 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>AppWebCasoEstudioSAS_JSF</project>
-		<project>sas+</project>
+		<project>APPWebCasoEstudioSAS_EJB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

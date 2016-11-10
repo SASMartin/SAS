@@ -5,7 +5,7 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="sas+.jar" deploy-path="/" handle="module:/resource/sas+/sas+">
+        <dependent-module archiveName="APPWebCasoEstudioSAS_EJB.jar" deploy-path="/" handle="module:/resource/APPWebCasoEstudioSAS_EJB/APPWebCasoEstudioSAS_EJB">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
