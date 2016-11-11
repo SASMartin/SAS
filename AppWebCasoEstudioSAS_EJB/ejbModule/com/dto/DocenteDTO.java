@@ -13,7 +13,6 @@ public class DocenteDTO extends PersonaDTO implements Serializable {
 	private Long id ;
 	private Date fechaEgreso;
 	private Date fechaIngreso;
-	
 
 	public DocenteDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac, String correo,
 			PaisesDTO paisDTO, Date fechaEgreso, Date fechaIngreso) {
