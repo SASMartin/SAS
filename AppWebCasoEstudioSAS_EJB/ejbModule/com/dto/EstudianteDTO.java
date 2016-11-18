@@ -1,7 +1,10 @@
 package com.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
+
+
 
 
 public class EstudianteDTO extends PersonaDTO implements Serializable {
@@ -14,6 +17,12 @@ public class EstudianteDTO extends PersonaDTO implements Serializable {
 	private Date fechaPrimerMat;
 
 	
+	
+	public EstudianteDTO() {
+		super();
+	}
+
+
 	public EstudianteDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac,
 			String correo, PaisesDTO paisDTO, Date fechaPrimerMat) {
 		super(nombre, telefono, documento, apellido, fechaNac, correo, paisDTO);

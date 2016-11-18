@@ -1,6 +1,10 @@
 package com.facade;
 
+
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.ejb.LocalBean;
 
 //import java.awt.List;
 
@@ -8,15 +12,21 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 
 import com.dto.PaisesDTO;
+
 import com.entities.Paises;
 //import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 /**
  * Session Bean implementation class PaisesFacade
  */
+
+
 @Stateless
+@LocalBean
 public class PaisesFacade implements PaisesFacadeRemote {
 
 	@PersistenceContext
@@ -35,12 +45,19 @@ public class PaisesFacade implements PaisesFacadeRemote {
 		em.persist(p);
     
     }
-    
-    public List<PaisesDTO> obtenerPaises (){
-    	Query query = em.createQuery("select new com.dto.PaisesDTO(P.NOMBRE) from Paises p");
-    	List<PaisesDTO> rst = (List<PaisesDTO>)query.getResultList();
-    	return rst ;
+        
+    @Override
+    public List<PaisesDTO> listaPaises(){
+    	TypedQuery<Paises> query = em.createQuery("FROM Paises", Paises.class);
+    	List<PaisesDTO> paisesDTO = new ArrayList<PaisesDTO>();
+    	for(Paises pai:query.getResultList()){
+    		PaisesDTO paiDTO = new PaisesDTO(pai.getNOMBRE());
+    		paisesDTO.add(paiDTO);
+    	}
+    	return paisesDTO;
     }
+    
+    
     
     //corregir este metodo para encontrar un pais pasandole en nombre 
     public PaisesDTO  obtenerUnPaisDTO (String nombre){

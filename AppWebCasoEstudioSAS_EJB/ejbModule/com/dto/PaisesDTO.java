@@ -45,6 +45,10 @@ public class PaisesDTO implements Serializable{
 		return "Nombre : " + nombre;
 		
 	}
+
+	public PaisesDTO() {
+		super();
+	}
 	
 	
 	

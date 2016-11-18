@@ -3,9 +3,7 @@ package com.facade;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.ejb.Remote;
-
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
 
@@ -13,6 +11,8 @@ import com.dto.EstudianteDTO;
 
 @Remote
 public interface ServiciosFacadeRemote {
+	
+	public void   pruebaJSF ();
 
 	public void crearEstudiante (EstudianteDTO est);
 	

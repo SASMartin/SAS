@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p= "http://primefaces.org/ui">
+ 	  
+	<h:head></h:head>
+	<h:body>
+	
+	<h:form>
+		<h:messages />
+		<h:panelGrid columns="2">
+			
+			<p:outputLabel for="Nombre" value="Nombre:" />
+			<p:inputText id="Nombre" value="#{crearEstudiante.estudiante.nombre}" required="true"/>
+			
+			<p:outputLabel for="Apellido" value="Apellido:"/>
+			<p:inputText id="Apellido" value="#{crearEstudiante.estudiante.apellido}" required="true"/>
+			
+			<p:outputLabel for="Documento" value="Docuemnto:" />
+			<p:inputText id="Documento" value="#{crearEstudiante.estudiante.documento}" required="true"/>
+			
+			<p:outputLabel for="Telefono" value="Telefono:" />
+			<p:inputText id="Telefono" value="#{crearEstudiante.estudiante.telefono}" />
+			
+			<p:outputLabel for="Correo" value="Correo:"/>
+			<p:inputText id="Correo" value="#{crearEstudiante.estudiante.correo}" />
+			
+			<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
+			<p:calendar id="fNac" value="#{crearEstudiante.estudiante.fechaNac}" required="true" pattern="dd/MM/yyyy"/>
+			
+			<p:outputLabel for="fPrimerMat" value="Fecha de primer Matricula :" />
+			<p:calendar  id="fPrimerMat" value="#{crearEstudiante.estudiante.fechaPrimerMat}" rendered="true" pattern="dd/MM/yyyy"/>
+			
+				<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" />
+		
+			</h:panelGrid>
+	
+		
+	
+	</h:form>
+	
+	
+	</h:body>
+	
+	
+</html>

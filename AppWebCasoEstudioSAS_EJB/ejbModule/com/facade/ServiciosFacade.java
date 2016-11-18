@@ -4,14 +4,12 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.ejb.Remote;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
 import com.dto.PaisesDTO;
@@ -22,8 +20,9 @@ import com.entities.Paises;
 /**
  * Session Bean implementation class PersonaFacade
  */
-@Stateless
 
+@Stateless
+@LocalBean
 public class ServiciosFacade implements ServiciosFacadeRemote {
 
 	@PersistenceContext
@@ -36,8 +35,14 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
         // TODO Auto-generated constructor stub
     }
     
+    public void pruebaJSF (){
+    	System.out.println("Hola");;
+    }
+    
+    
     public void crearEstudiante (EstudianteDTO est){
-    	Paises p = new Paises(est.getPais().getId(),est.getPais().getNombre());
+    	Paises p = new Paises(1l,"Uruguay");
+    	//Paises p = new Paises(est.getPais().getId(),est.getPais().getNombre());
     	
     	Estudiantes e = new Estudiantes (est.getNombre() , est.getApellido() , est.getDocumento() , est.getTelefono() ,est.getCorreo(), p, est.getFechaNac() , est.getFechaPrimerMat());
     	e.setFechaPrimerMat (est.getFechaPrimerMat() );
@@ -50,7 +55,8 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     
     public void crearDocente (DocenteDTO doc){
     	
-    	Paises p = new Paises(doc.getPais().getId(),doc.getPais().getNombre());
+    	Paises p = new Paises(1l,"Uruguay");
+    	//Paises p = new Paises(doc.getPais().getId(),doc.getPais().getNombre());
     	
     	Docentes d = new Docentes(doc.getNombre(), doc.getApellido(), doc.getDocumento(), doc.getTelefono(), doc.getCorreo(),p, doc.getFechaNac(),doc.getFechaIngreso(),doc.getFechaEgreso());
     	d.getFechaEgreso();

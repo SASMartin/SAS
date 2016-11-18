@@ -1,9 +1,12 @@
 package com.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * Entity implementation class for Entity: Estudiantes

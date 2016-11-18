@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+ 	  xmlns:p= "http://primefaces.org/ui">
+ 	  
+	<h:head></h:head>
+	
+	
+	
+	<h:body>
+	
+		<p:dataTable var = "emp" value = "#{listarDocentes.docentes}" >
+		
+			<p:column headerText="Nombre">
+				<h:outputText value="#{emp.nombre} #{emp.apellido}" />
+			</p:column>
+		
+			<p:column headerText="Documento">
+				<h:outputText value="#{emp.documento}" />
+			</p:column>
+		
+			<p:column headerText="Telefono">
+				<h:outputText value="#{emp.telefono}" />
+			</p:column>
+			
+			<p:column headerText="Correo">
+				<h:outputText value="#{emp.correo}" />
+			</p:column>
+			
+			<p:column headerText="Fecha de Nacimiento">
+				<h:outputText value="#{emp.fechaNac}" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+			
+			<p:column headerText="Fecha de Ingreso">
+				<h:outputText value="#{emp.fechaIngreso}" >
+				<f:convertDateTime pattern = "dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+			
+			<p:column headerText="Fecha de Egreso">
+				<h:outputText value="#{emp.fechaEgreso}" >
+				<f:convertDateTime pattern = "dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+		
+		</p:dataTable>
+	
+	
+	
+	</h:body>
+	
+</html>
