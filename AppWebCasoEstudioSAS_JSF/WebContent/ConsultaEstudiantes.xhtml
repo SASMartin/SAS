@@ -5,44 +5,48 @@
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p= "http://primefaces.org/ui">
  	  
-	<h:head></h:head>
-	
+	<h:head>
+		<title>Consulta Estudiantes</title>
+	</h:head>
 	<h:body>
 	
-		<p:dataTable var = "emp" value = "#{listarEstudiantes.estudiantes}" >
-		
-			<p:column headerText="Nombre">
-				<h:outputText value="#{emp.nombre} #{emp.apellido}" />
-			</p:column>
-		
-			<p:column headerText="Documento">
-				<h:outputText value="#{emp.documento}" />
-			</p:column>
-		
-			<p:column headerText="Telefono">
-				<h:outputText value="#{emp.telefono}" />
-			</p:column>
-			
-			<p:column headerText="Correo">
-				<h:outputText value="#{emp.correo}" />
-			</p:column>
-			
-			<p:column headerText="Fecha de Nacimiento">
-				<h:outputText value="#{emp.fechaNac}" >
-				<f:convertDateTime pattern="dd/MM/yyyy"/>
-				</h:outputText>
-			</p:column>
-			
-			<p:column headerText="Fecha de Matriculacion">
-				<h:outputText value="#{emp.fechaPrimerMat}" >
-				<f:convertDateTime pattern = "dd/MM/yyyy"/>
-				</h:outputText>
-			</p:column>
-			
-		
-		</p:dataTable>
+		<ui:composition template="Templates/common.xhtml">	
+          <ui:define name="content">
 	
+			<p:dataTable var = "emp" value = "#{listarEstudiantes.estudiantes}" >
+			
+				<p:column headerText="Nombre">
+					<h:outputText value="#{emp.nombre} #{emp.apellido}" />
+				</p:column>
+			
+				<p:column headerText="Documento">
+					<h:outputText value="#{emp.documento}" />
+				</p:column>
+			
+				<p:column headerText="Telefono">
+					<h:outputText value="#{emp.telefono}" />
+				</p:column>
+				
+				<p:column headerText="Correo">
+					<h:outputText value="#{emp.correo}" />
+				</p:column>
+				
+				<p:column headerText="Fecha de Nacimiento">
+					<h:outputText value="#{emp.fechaNac}" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Fecha de Matriculacion">
+					<h:outputText value="#{emp.fechaPrimerMat}" >
+					<f:convertDateTime pattern = "dd/MM/yyyy"/>
+					</h:outputText>
+				</p:column>
+				
+			</p:dataTable>
 	
+	     </ui:define>
+       </ui:composition>
 	
 	</h:body>
 	
