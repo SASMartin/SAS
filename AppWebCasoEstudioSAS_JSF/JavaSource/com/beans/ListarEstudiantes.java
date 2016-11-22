@@ -6,13 +6,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+
 
 import com.dto.EstudianteDTO;
 import com.facade.ServiciosFacade;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ListarEstudiantes {
 	
 	@EJB
