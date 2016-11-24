@@ -12,33 +12,41 @@
 	
 		<ui:composition template="Templates/common.xhtml">	
            <ui:define name="content">
+           <p:tooltip />
 	
 			<h:form>
-				<h:messages />
-				<h:panelGrid columns="2">
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<h:panelGrid id="grid" columns="2">
 					
 					<p:outputLabel for="Nombre" value="Nombre:" />
 					<p:inputText id="Nombre" value="#{crearEstudiante.estudiante.nombre}" required="true"/>
+					<p:message for="Nombre" display="tooltip" />
 					
 					<p:outputLabel for="Apellido" value="Apellido:"/>
 					<p:inputText id="Apellido" value="#{crearEstudiante.estudiante.apellido}" required="true"/>
+					<p:message for="Apellido" display="tooltip" />
 					
-					<p:outputLabel for="Documento" value="Docuemnto:" />
+					<p:outputLabel for="Documento" value="Documento:" />
 					<p:inputText id="Documento" value="#{crearEstudiante.estudiante.documento}" required="true"/>
+					<p:message for="Documento" display="tooltip" />
 					
 					<p:outputLabel for="Telefono" value="Telefono:" />
 					<p:inputText id="Telefono" value="#{crearEstudiante.estudiante.telefono}" />
+					<p:message for="Telefono" display="tooltip" />
 					
 					<p:outputLabel for="Correo" value="Correo:"/>
 					<p:inputText id="Correo" value="#{crearEstudiante.estudiante.correo}" />
+					<p:message for="Correo" display="tooltip" />
 					
 					<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
 					<p:calendar id="fNac" value="#{crearEstudiante.estudiante.fechaNac}" required="true" pattern="dd/MM/yyyy"/>
+					<p:message for="fNac" display="tooltip" />
 					
 					<p:outputLabel for="fPrimerMat" value="Fecha de primer Matricula :" />
 					<p:calendar  id="fPrimerMat" value="#{crearEstudiante.estudiante.fechaPrimerMat}" rendered="true" pattern="dd/MM/yyyy"/>
+					<p:message for="fPrimerMat" display="tooltip" />
 					
-					<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" />
+					<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" update="grid" />
 			
 				</h:panelGrid>
 		

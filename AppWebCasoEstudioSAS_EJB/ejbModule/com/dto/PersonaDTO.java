@@ -3,16 +3,7 @@ package com.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-
-
-
-
 public class PersonaDTO implements Serializable {
-
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private long id ;
 	private String nombre ;
@@ -23,12 +14,10 @@ public class PersonaDTO implements Serializable {
 	private String correo ;
 	private PaisesDTO pais ;
 	
-	
-	
-
 	public PersonaDTO() {
 		super();
 	}
+	
 	public PersonaDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac, String correo,
 			PaisesDTO paisDTO) {
 		super();
@@ -40,6 +29,7 @@ public class PersonaDTO implements Serializable {
 		this.correo = correo;
 		this.pais = paisDTO;
 	}
+	
 	public long getId() {
 		return id;
 	}

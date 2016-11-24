@@ -15,8 +15,7 @@ public class Paises implements Serializable {
 	@Id
 	@SequenceGenerator(name="SEQ_ID_PAIS",sequenceName="SEQ_ID_PAIS",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_ID_PAIS")
-	
-	   private Long ID_PAIS;
+	private Long ID_PAIS;
 	
 	@Column(nullable=false ,unique = true)
 	   private String NOMBRE ;
@@ -35,7 +34,6 @@ public class Paises implements Serializable {
 		ID_PAIS = iD_PAIS;
 		NOMBRE = nOMBRE;
 	}
-
 
 	public Long getID_PAIS() {
 		return ID_PAIS;
@@ -57,10 +55,4 @@ public class Paises implements Serializable {
 		return serialVersionUID;
 	}
 	
-	
-	
-	
-	
-	
-   
 }

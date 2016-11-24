@@ -3,22 +3,11 @@ package com.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-
-
-
-
 public class DocenteDTO extends PersonaDTO implements Serializable {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Long id ;
 	private Date fechaEgreso;
 	private Date fechaIngreso;
-	
-	
-	
 
 	public DocenteDTO() {
 		super();
@@ -76,7 +65,5 @@ public class DocenteDTO extends PersonaDTO implements Serializable {
 				
 		
 	}
-
-
 
 }

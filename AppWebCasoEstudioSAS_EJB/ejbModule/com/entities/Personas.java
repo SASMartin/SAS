@@ -25,6 +25,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Personas implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	   @Id
 	   @SequenceGenerator(name="Personas_GEN", sequenceName = "SEQ_ID_PERSONAS" ,allocationSize=1 )
 	   @GeneratedValue(strategy=GenerationType.SEQUENCE , generator= "Personas_GEN")
@@ -47,25 +48,6 @@ public class Personas implements Serializable {
 		super();
 	}
 
-	
-	
-	
-	
-
-	/*public Personas(String nOMBRE, String aPELLIDO, String dOCUMENTO, String tELEFONO, String cORREO, Paises pais,
-			Date fechaNac) {
-		super();
-		NOMBRE = nOMBRE;
-		APELLIDO = aPELLIDO;
-		DOCUMENTO = dOCUMENTO;
-		TELEFONO = tELEFONO;
-		CORREO = cORREO;
-		this.pais = pais;
-		this.fechaNac = fechaNac;
-	}*/
-
-
-
 	public Personas(String nombre, String apellido, String documento, String telefono, String correo, Paises pais,
 			Date fechaNac) {
 		super();
@@ -77,7 +59,6 @@ public class Personas implements Serializable {
 		this.pais = pais;
 		this.fechaNac = fechaNac;
 	}
-
 
 	public Long getCodigo() {
 		return codigo;
@@ -146,8 +127,5 @@ public class Personas implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-
-
    
 }

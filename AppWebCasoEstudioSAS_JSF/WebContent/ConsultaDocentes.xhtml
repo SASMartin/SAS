@@ -13,6 +13,7 @@
 		<ui:composition template="Templates/common.xhtml">	
          <ui:define name="content">
          
+         	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 			<p:dataTable var = "emp" value = "#{listarDocentes.docentes}" >
 			
 				<p:column headerText="Nombre">

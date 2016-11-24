@@ -3,25 +3,14 @@ package com.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-
-
-
-
 public class EstudianteDTO extends PersonaDTO implements Serializable {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private Date fechaPrimerMat;
 
-	
-	
 	public EstudianteDTO() {
 		super();
 	}
-
 
 	public EstudianteDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac,
 			String correo, PaisesDTO paisDTO, Date fechaPrimerMat) {
@@ -29,14 +18,12 @@ public class EstudianteDTO extends PersonaDTO implements Serializable {
 		this.fechaPrimerMat = fechaPrimerMat;
 	}
 	
-	
 	public EstudianteDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac,
 			String correo, PaisesDTO paisDTO, Long id, Date fechaPrimerMat) {
 		super(nombre, telefono, documento, apellido, fechaNac, correo, paisDTO);
 		this.id = id;
 		this.fechaPrimerMat = fechaPrimerMat;
 	}
-
 
 	public long getId() {
 		return id;
@@ -64,6 +51,5 @@ public class EstudianteDTO extends PersonaDTO implements Serializable {
 				"\n Fecha de egreso : " + getFechaPrimerMat()+
 				" \n  ===============  ";
 	}
-	
 	
 }
