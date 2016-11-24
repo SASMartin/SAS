@@ -3,10 +3,6 @@ package com.dto;
 import java.io.Serializable;
 
 public class PaisesDTO implements Serializable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private Long id ;
@@ -49,8 +45,5 @@ public class PaisesDTO implements Serializable{
 	public PaisesDTO() {
 		super();
 	}
-	
-	
-	
 
 }

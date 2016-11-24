@@ -5,9 +5,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
+import javax.faces.context.FacesContext;
 
 import com.dto.EstudianteDTO;
 import com.facade.ServiciosFacade;
@@ -34,8 +35,12 @@ public class ListarEstudiantes {
 	
 	@PostConstruct
 	public void inicializar () throws SQLException{
-		if(estudiantes==null){
-			estudiantes = serviciosFacade.obtenerEstudiantes();
+		try {
+			if(estudiantes==null)
+				estudiantes = serviciosFacade.obtenerEstudiantes();
+		} catch (Exception ex){
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar listar los Estudiantes"));
 		}
 	}
  

@@ -1,13 +1,13 @@
 package com.facade;
 
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import com.dto.DocenteDTO;
@@ -35,70 +35,77 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
         // TODO Auto-generated constructor stub
     }
     
-    public void pruebaJSF (){
-    	System.out.println("Hola");;
-    }
-    
-    
     public void crearEstudiante (EstudianteDTO est){
-    	Paises p = new Paises(1l,"Uruguay");
-    	//Paises p = new Paises(est.getPais().getId(),est.getPais().getNombre());
-    	
-    	Estudiantes e = new Estudiantes (est.getNombre() , est.getApellido() , est.getDocumento() , est.getTelefono() ,est.getCorreo(), p, est.getFechaNac() , est.getFechaPrimerMat());
-    	e.setFechaPrimerMat (est.getFechaPrimerMat() );
-    	
-    	Query q = em.createNativeQuery("select SEQ_ID_ESTUDIANTE.nextval from dual");
-    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
-    	e.setID(codigo.longValue());
-    	em.persist(e);
+    	try{
+	    	Paises p = new Paises(new Long(1),"Uruguay");
+	    	//Paises p = new Paises(est.getPais().getId(),est.getPais().getNombre());
+	    	
+	    	Estudiantes e = new Estudiantes (est.getNombre() , est.getApellido() , est.getDocumento() , est.getTelefono() ,est.getCorreo(), p, est.getFechaNac() , est.getFechaPrimerMat());
+	    	e.setFechaPrimerMat (est.getFechaPrimerMat() );
+	    	
+	    	Query q = em.createNativeQuery("select SEQ_ID_ESTUDIANTE.nextval from dual");
+	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
+	    	e.setID(codigo.longValue());
+	    	em.persist(e);
+    	}catch(PersistenceException ex){
+    		System.out.println("Error SQL: " + ex.getMessage());
+    	}
     }
     
     public void crearDocente (DocenteDTO doc){
-    	
-    	Paises p = new Paises(1l,"Uruguay");
-    	//Paises p = new Paises(doc.getPais().getId(),doc.getPais().getNombre());
-    	
-    	Docentes d = new Docentes(doc.getNombre(), doc.getApellido(), doc.getDocumento(), doc.getTelefono(), doc.getCorreo(),p, doc.getFechaNac(),doc.getFechaIngreso(),doc.getFechaEgreso());
-    	d.getFechaEgreso();
-    	d.getFechaIngreso();
-    	Query q = em.createNativeQuery("select SEQ_ID_DOCENTE.nextval from dual");
-    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
-    	d.setID(codigo.longValue());
-    	em.persist(d);
-    	
+    	try{
+	    	Paises p = new Paises(new Long(1),"Uruguay");
+	    	//Paises p = new Paises(doc.getPais().getId(),doc.getPais().getNombre());
+	    	
+	    	Docentes d = new Docentes(doc.getNombre(), doc.getApellido(), doc.getDocumento(), doc.getTelefono(), doc.getCorreo(),p, doc.getFechaNac(),doc.getFechaIngreso(),doc.getFechaEgreso());
+	    	d.getFechaEgreso();
+	    	d.getFechaIngreso();
+	    	Query q = em.createNativeQuery("select SEQ_ID_DOCENTE.nextval from dual");
+	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
+	    	d.setID(codigo.longValue());
+	    	em.persist(d);
+    	}catch(PersistenceException ex){
+    		System.out.println("Error SQL: " + ex.getMessage());
+    	}
     }
     
     
     @Override
-	public List<DocenteDTO> obtenerDocentes() throws SQLException {
-		TypedQuery<Docentes> query = em.createQuery("FROM Docentes",Docentes.class);
-		List<DocenteDTO> docenteDTO = new ArrayList<DocenteDTO>(); 
-		
-
-		for(Docentes doc:query.getResultList()){
-			DocenteDTO estDTO = new DocenteDTO(doc.getNombre(),doc.getTelefono(), doc.getDocumento(),doc.getApellido(),doc.getFechaNac(),
-					doc.getCorreo(),new PaisesDTO(doc.getPais().getNOMBRE()),doc.getFechaEgreso(),doc.getFechaIngreso());
-				
-			docenteDTO.add(estDTO);
-		}
-		
-		return docenteDTO;
+	public List<DocenteDTO> obtenerDocentes(){
+    	List<DocenteDTO> docenteDTO = null;
+    	try{
+    		docenteDTO = new ArrayList<DocenteDTO>();
+			TypedQuery<Docentes> query = em.createQuery("FROM Docentes",Docentes.class); 		
+	
+			for(Docentes doc:query.getResultList()){
+				DocenteDTO estDTO = new DocenteDTO(doc.getNombre(),doc.getTelefono(), doc.getDocumento(),doc.getApellido(),doc.getFechaNac(),
+						doc.getCorreo(),new PaisesDTO(doc.getPais().getNOMBRE()),doc.getFechaEgreso(),doc.getFechaIngreso());
+					
+				docenteDTO.add(estDTO);
+			}			
+    	}catch(PersistenceException ex){
+    		System.out.println("Error SQL: " + ex.getMessage());
+    	}
+    	return docenteDTO;
 	}
+    
     @Override
-   	public List<EstudianteDTO> obtenerEstudiantes() throws SQLException {
-   		TypedQuery<Estudiantes> query = em.createQuery("FROM Estudiantes",Estudiantes.class);
-   		List<EstudianteDTO> estudianteDTO = new ArrayList<EstudianteDTO>(); 
-   		
-   		
-   		for(Estudiantes est:query.getResultList()){
-   			EstudianteDTO estDTO = new EstudianteDTO(est.getNombre(),est.getTelefono(), est.getDocumento(),est.getApellido(),est.getFechaNac(),
-   					est.getCorreo(),new PaisesDTO(est.getPais().getNOMBRE()), est.getFechaPrimerMat());
-   				
-   			estudianteDTO.add(estDTO);
-   		}
-   		
+   	public List<EstudianteDTO> obtenerEstudiantes(){
+    	List<EstudianteDTO> estudianteDTO = null;
+    	try{
+    		estudianteDTO = new ArrayList<EstudianteDTO>();
+	    	TypedQuery<Estudiantes> query = em.createQuery("FROM Estudiantes",Estudiantes.class);	   		
+	   		
+	   		for(Estudiantes est:query.getResultList()){
+	   			EstudianteDTO estDTO = new EstudianteDTO(est.getNombre(),est.getTelefono(), est.getDocumento(),est.getApellido(),est.getFechaNac(),
+	   					est.getCorreo(),new PaisesDTO(est.getPais().getNOMBRE()), est.getFechaPrimerMat());
+	   				
+	   			estudianteDTO.add(estDTO);
+	   		}
+   		}catch(PersistenceException ex){
+    		System.out.println("Error SQL: " + ex.getMessage());
+    	}
    		return estudianteDTO;
    	}
-    
 
 }

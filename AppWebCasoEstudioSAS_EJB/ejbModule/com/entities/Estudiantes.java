@@ -30,22 +30,17 @@ public class Estudiantes extends Personas implements Serializable {
 		this.fechaPrimerMat = fechaPrimerMat;
 	}
 
-	
 	public Estudiantes() {
 		super();
 	}
-
-
 
 	public Long getID() {
 		return ID;
 	}
 
-
 	public void setID(Long iD) {
 		ID = iD;
 	}
-
 
 	public Date getFechaPrimerMat() {
 		return fechaPrimerMat;
@@ -57,13 +52,6 @@ public class Estudiantes extends Personas implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	
-
-		
-	
-
-	
-	
+	}	
 	
 }

@@ -19,7 +19,6 @@ import javax.persistence.Table;
 public class Docentes extends Personas implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-
 	@Column(name = "ID_DOCENTE", unique = true)
 	private Long ID;
 	
@@ -33,15 +32,12 @@ public class Docentes extends Personas implements Serializable {
 		super();
 	}
 
-	
-
 	public Docentes(String nOMBRE, String aPELLIDO, String dOCUMENTO, String tELEFONO, String cORREO, Paises pais,
 			Date fechaNac, Date fechaIngreso, Date fechaEgreso) {
 		super(nOMBRE, aPELLIDO, dOCUMENTO, tELEFONO, cORREO, pais, fechaNac);
 		this.fechaIngreso = fechaIngreso;
 		this.fechaEgreso = fechaEgreso;
 	}
-
 
 	public Long getID() {
 		return ID;
@@ -70,6 +66,5 @@ public class Docentes extends Personas implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 	
 }
