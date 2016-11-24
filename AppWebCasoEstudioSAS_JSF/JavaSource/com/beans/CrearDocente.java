@@ -52,11 +52,22 @@ public class CrearDocente {
 		} catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar crear un Docente"));
+			
+			List<DocenteDTO> lDocente = new ArrayList<>();
+			lDocente = serviciosFacade.obtenerDocentes();
+			for(DocenteDTO docentes : lDocente){
+				if (docentes.getDocumento().equals(docente.getDocumento())){
+					
+					FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El documento ya existe en el Systema"));
+			
+				}
+			}
 		}
 		
 	}
 	
-	public void validacionCedula(String  doc){
+	/*public void validacionCedula(String doc){
 		List<DocenteDTO> lDocente = new ArrayList<>();
 		lDocente = serviciosFacade.obtenerDocentes();
 		for(DocenteDTO docentes : lDocente){
@@ -67,12 +78,12 @@ public class CrearDocente {
 			}else{
 				
 				FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Documento valido"));
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Documento valido"));
 				
 			}
 		}
 		
-	}
+	}*/
 	
 
 }
