@@ -1,5 +1,8 @@
 package com.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -50,6 +53,25 @@ public class CrearDocente {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar crear un Docente"));
 		}
+		
+	}
+	
+	public void validacionCedula(String  doc){
+		List<DocenteDTO> lDocente = new ArrayList<>();
+		lDocente = serviciosFacade.obtenerDocentes();
+		for(DocenteDTO docentes : lDocente){
+			if (docentes.getDocumento().equals(doc)){
+				
+				FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El documento ya existe en el Systema"));
+			}else{
+				
+				FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Documento valido"));
+				
+			}
+		}
+		
 	}
 	
 
