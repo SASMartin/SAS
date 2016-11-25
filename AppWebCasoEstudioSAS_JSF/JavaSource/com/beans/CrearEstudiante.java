@@ -47,7 +47,7 @@ public class CrearEstudiante {
 			serviciosFacade.crearEstudiante(estudiante);
 			FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Estudiante creado exitosamente"));
-			
+			estudiante=null;
 			
 		} catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
