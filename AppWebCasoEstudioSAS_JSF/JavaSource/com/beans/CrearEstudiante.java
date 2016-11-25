@@ -65,5 +65,10 @@ public class CrearEstudiante {
 			}
 		}	
 	}
+	
+	public String cancelar(){
+		
+		return "index";
+	}
 
 }

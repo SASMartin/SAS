@@ -47,6 +47,7 @@
 					<p:message for="fPrimerMat" display="tooltip" />
 					
 					<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" update="grid" />
+					<p:commandButton value="Cacelar" action="#{crearEstudiante.cancelar()}" immediate="true" update="grid"/>
 			
 				</h:panelGrid>
 		

@@ -50,7 +50,8 @@
 					<p:calendar  id="fEgr" value="#{crearDocente.docente.fechaEgreso}" pattern="dd/MM/yyyy"/>
 					<p:message for="fEgr" display="tooltip" />
 					
-					<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" />
+					<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
+					<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" update="grid"/>
 				
 				</h:panelGrid>
 			

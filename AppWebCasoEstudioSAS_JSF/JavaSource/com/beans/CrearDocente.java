@@ -68,6 +68,11 @@ public class CrearDocente {
 		
 	}
 	
+public String cancelar(){
+		
+		return "index";
+	}
+	
 	/*public void validacionCedula(String doc){
 		List<DocenteDTO> lDocente = new ArrayList<>();
 		lDocente = serviciosFacade.obtenerDocentes();
