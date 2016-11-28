@@ -6,6 +6,9 @@
 	  xmlns:p= "http://primefaces.org/ui">
 	
 	<h:head>Menu</h:head>
+	<h:body>
+	<ui:composition template="Templates/common.xhtml">	
+         <ui:define name="content">
 	<h:form>
 		
 		<p:menubar>
@@ -25,5 +28,8 @@
 		</p:menubar>
 	
 	</h:form>
+	</ui:define>
+	</ui:composition>
 	
+	</h:body>
 </html>
