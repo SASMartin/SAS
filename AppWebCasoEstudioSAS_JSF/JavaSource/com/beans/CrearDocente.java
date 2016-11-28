@@ -1,15 +1,24 @@
 package com.beans;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+
+import org.primefaces.context.RequestContext;
 
 import com.dto.DocenteDTO;
+import com.dto.PaisesDTO;
+import com.entities.Paises;
+import com.facade.PaisesFacade;
 import com.facade.ServiciosFacade;
 
 @ManagedBean
@@ -17,9 +26,34 @@ import com.facade.ServiciosFacade;
 public class CrearDocente {
 	
 	@EJB
+	private PaisesFacade servicioPais;
 	private ServiciosFacade serviciosFacade ;
 	private DocenteDTO docente;
+	private List<SelectItem> paisSeleccionado ;
+	private PaisesDTO paisDTO ; 
 	
+	public PaisesFacade getServicioPais() {
+		return servicioPais;
+	}
+
+	public PaisesDTO getPaisDTO() {
+		return paisDTO;
+	}
+
+	public void setPaisDTO(PaisesDTO paisDTO) {
+		this.paisDTO = paisDTO;
+	}
+
+	public void setServicioPais(PaisesFacade servicioPais) {
+		this.servicioPais = servicioPais;
+	}
+
+	
+
+	public void setPaisSeleccionado(List<SelectItem> paisSeleccionado) {
+		this.paisSeleccionado = paisSeleccionado;
+	}
+
 	public CrearDocente(){
 		if(docente==null){
 			docente = new DocenteDTO();
@@ -72,6 +106,40 @@ public String cancelar(){
 		
 		return "index";
 	}
+
+
+public List<PaisesDTO> listaPaises() throws SQLException{
+	List<PaisesDTO> paises = new ArrayList<>();
+	paises = servicioPais.listaPaises();
+	
+	return paises;
+	
+}
+
+public List<SelectItem> getPaisSeleccionado() throws SQLException {
+	if(paisSeleccionado==null){
+		
+		paisSeleccionado = new ArrayList<SelectItem>();
+	
+		List<PaisesDTO> paises = servicioPais.listaPaises();
+		//paises.clear();
+		
+		if(paises != null && !paises.isEmpty()){
+			SelectItem item ;
+			for(PaisesDTO paisesLista  : paises) {
+				
+				item = new SelectItem(paisesLista,paisesLista.getNombre());
+				
+				paisSeleccionado.add(item);
+			}
+		}
+		
+	}
+	
+	return paisSeleccionado;
+}
+
+
 	
 	/*public void validacionCedula(String doc){
 		List<DocenteDTO> lDocente = new ArrayList<>();

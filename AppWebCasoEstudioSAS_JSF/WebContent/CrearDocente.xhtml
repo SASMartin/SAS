@@ -50,9 +50,26 @@
 					<p:calendar  id="fEgr" value="#{crearDocente.docente.fechaEgreso}" pattern="dd/MM/yyyy"/>
 					<p:message for="fEgr" display="tooltip" />
 					
+					<p:outputLabel for="Pais" value="Pais de nacimiento"/>
+					<p:selectOneMenu id="Pais" Value="#{crearDocente.docente.pais}" converter="#{paisConverter}" >
+						<f:selectItem itemLabel="Select One" itemValue=""/>
+						<f:selectItems value="#{crearDocente.listaPaises()}" var="p" itemLabel="#{p.nombre}"/>
+					</p:selectOneMenu>
+					<p:message for="Pais" display="tooltip" />
+					
+					
 					<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
-					<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" update="grid"/>
-				
+					
+					<p:growl id="message"  showDetail="true"/>
+						<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" update="message">
+							<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
+						</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+						<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+					
+
 				</h:panelGrid>
 			
 			</h:form>

@@ -47,7 +47,15 @@
 					<p:message for="fPrimerMat" display="tooltip" />
 					
 					<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" update="grid" />
-					<p:commandButton value="Cacelar" action="#{crearEstudiante.cancelar()}" immediate="true" update="grid"/>
+					
+					<p:growl id="message"  showDetail="true"/>
+						<p:commandButton value="Cancelar" action="#{crearEstudiante.cancelar()}" immediate="true" update="message">
+							<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
+						</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+						<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 			
 				</h:panelGrid>
 		

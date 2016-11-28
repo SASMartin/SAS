@@ -54,8 +54,9 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     
     public void crearDocente (DocenteDTO doc){
     	try{
-	    	Paises p = new Paises(new Long(1),"Uruguay");
-	    	//Paises p = new Paises(doc.getPais().getId(),doc.getPais().getNombre());
+	    	//Paises p = new Paises(new Long(1),"Uruguay");
+    		
+	    	Paises p = new Paises(doc.getPais().getId(),doc.getPais().getNombre());
 	    	
 	    	Docentes d = new Docentes(doc.getNombre(), doc.getApellido(), doc.getDocumento(), doc.getTelefono(), doc.getCorreo(),p, doc.getFechaNac(),doc.getFechaIngreso(),doc.getFechaEgreso());
 	    	d.getFechaEgreso();
