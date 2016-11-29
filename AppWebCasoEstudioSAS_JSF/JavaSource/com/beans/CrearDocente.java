@@ -10,8 +10,11 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.faces.validator.ValidatorException;
+import javax.validation.ValidationException;
 
 import org.primefaces.context.RequestContext;
 
@@ -76,6 +79,7 @@ public class CrearDocente {
 		this.docente = docente;
 	}
 	
+	
 	public void crear(){
 		try {
 			serviciosFacade.crearDocente(docente);
@@ -104,7 +108,7 @@ public class CrearDocente {
 	
 public String cancelar(){
 		
-		return "index";
+		return "Menu";
 	}
 
 
@@ -139,8 +143,6 @@ public List<SelectItem> getPaisSeleccionado() throws SQLException {
 	return paisSeleccionado;
 }
 
-
-	
 	/*public void validacionCedula(String doc){
 		List<DocenteDTO> lDocente = new ArrayList<>();
 		lDocente = serviciosFacade.obtenerDocentes();
