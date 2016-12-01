@@ -38,7 +38,7 @@ public class PaisesDTO implements Serializable{
 	
 	@Override
 	public String toString(){
-		return "Nombre : " + nombre;
+		return "NombreDTO : " + nombre;
 		
 	}
 

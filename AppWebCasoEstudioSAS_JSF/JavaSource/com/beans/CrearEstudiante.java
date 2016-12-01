@@ -52,23 +52,14 @@ public class CrearEstudiante {
 		} catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar crear un Estudiante"));
+
 			
-			List<EstudianteDTO> lEstudiante = new ArrayList<>();
-			lEstudiante = serviciosFacade.obtenerEstudiantes();
-			for(EstudianteDTO estudiantes : lEstudiante){
-				if (estudiantes.getDocumento().equals(estudiante.getDocumento())){
-					
-					FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
-							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El documento ya existe en el Systema"));
-			
-				}
-			}
 		}	
 	}
 	
 	public String cancelar(){
 		
-		return "index";
+		return "Menu";
 	}
 
 }

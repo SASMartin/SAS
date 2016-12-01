@@ -33,19 +33,11 @@ public class CrearDocente {
 	private ServiciosFacade serviciosFacade ;
 	private DocenteDTO docente;
 	private List<SelectItem> paisSeleccionado ;
-	private PaisesDTO paisDTO ; 
 	
 	public PaisesFacade getServicioPais() {
 		return servicioPais;
 	}
 
-	public PaisesDTO getPaisDTO() {
-		return paisDTO;
-	}
-
-	public void setPaisDTO(PaisesDTO paisDTO) {
-		this.paisDTO = paisDTO;
-	}
 
 	public void setServicioPais(PaisesFacade servicioPais) {
 		this.servicioPais = servicioPais;
@@ -60,6 +52,7 @@ public class CrearDocente {
 	public CrearDocente(){
 		if(docente==null){
 			docente = new DocenteDTO();
+			docente.setPais(new PaisesDTO());
 		}
 	}
 
@@ -82,7 +75,19 @@ public class CrearDocente {
 	
 	public void crear(){
 		try {
+			System.out.println(docente.getPais().getId());
+			System.out.println(docente.getPais().getNombre());
+			System.out.println(docente.getNombre());
+			System.out.println(docente.getApellido());
+			System.out.println(docente.getCorreo());
+			System.out.println(docente.getTelefono());
+			System.out.println(docente.getFechaEgreso());
+			System.out.println(docente.getFechaNac());
+			System.out.println(docente.getFechaIngreso());
+			System.out.println(docente.getDocumento());
 			serviciosFacade.crearDocente(docente);
+			
+			
 			//FacesContext.getCurrentInstance().addMessage(null, 
 				//	new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Docente creado exitosamente"));
 			FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
@@ -92,16 +97,6 @@ public class CrearDocente {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar crear un Docente"));
 			
-			List<DocenteDTO> lDocente = new ArrayList<>();
-			lDocente = serviciosFacade.obtenerDocentes();
-			for(DocenteDTO docentes : lDocente){
-				if (docentes.getDocumento().equals(docente.getDocumento())){
-					
-					FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
-							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El documento ya existe en el Systema"));
-			
-				}
-			}
 		}
 		
 	}
@@ -111,14 +106,6 @@ public String cancelar(){
 		return "Menu";
 	}
 
-
-public List<PaisesDTO> listaPaises() throws SQLException{
-	List<PaisesDTO> paises = new ArrayList<>();
-	paises = servicioPais.listaPaises();
-	
-	return paises;
-	
-}
 
 public List<SelectItem> getPaisSeleccionado() throws SQLException {
 	if(paisSeleccionado==null){
@@ -142,24 +129,5 @@ public List<SelectItem> getPaisSeleccionado() throws SQLException {
 	
 	return paisSeleccionado;
 }
-
-	/*public void validacionCedula(String doc){
-		List<DocenteDTO> lDocente = new ArrayList<>();
-		lDocente = serviciosFacade.obtenerDocentes();
-		for(DocenteDTO docentes : lDocente){
-			if (docentes.getDocumento().equals(doc)){
-				
-				FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El documento ya existe en el Systema"));
-			}else{
-				
-				FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Documento valido"));
-				
-			}
-		}
-		
-	}*/
 	
-
 }

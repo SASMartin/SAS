@@ -28,6 +28,8 @@ public class Paises implements Serializable {
 		super();
 		NOMBRE = nOMBRE;
 	}
+	
+	
 
 	public Paises(Long iD_PAIS, String nOMBRE) {
 		super();

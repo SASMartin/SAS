@@ -41,7 +41,7 @@ public class PaisesFacade implements PaisesFacadeRemote {
     	TypedQuery<Paises> query = em.createQuery("FROM Paises", Paises.class);
 		List<PaisesDTO> paisesDTO = new ArrayList<PaisesDTO>();
 		for(Paises pai:query.getResultList()){
-			PaisesDTO paiDTO = new PaisesDTO(pai.getNOMBRE());
+			PaisesDTO paiDTO = new PaisesDTO(pai.getID_PAIS(),pai.getNOMBRE());
 			paisesDTO.add(paiDTO);
 		}
 		return paisesDTO;

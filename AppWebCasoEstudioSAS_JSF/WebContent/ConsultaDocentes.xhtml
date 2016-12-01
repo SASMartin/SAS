@@ -12,9 +12,9 @@
 	
 		<ui:composition template="Templates/common.xhtml">	
          <ui:define name="content">
-         
+         <h:form id="form">
          	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-			<p:dataTable var = "emp" value = "#{listarDocentes.docentes}" >
+			<p:dataTable id="tabla" var = "emp" value = "#{listarDocentes.docentes}" >
 			
 				<p:column headerText="Nombre">
 					<h:outputText value="#{emp.nombre} #{emp.apellido}" />
@@ -52,6 +52,12 @@
 			
 			</p:dataTable>
 			
+			<h:panelGrid columns="2">
+			<p:commandButton value="Volver a Inicio " action="#{crearDocente.cancelar()}" update="form"/>
+			<p:commandButton value="Actualizar tabla" update="tabla" />
+			</h:panelGrid>
+			
+			</h:form>
 		 </ui:define>
        </ui:composition>
        

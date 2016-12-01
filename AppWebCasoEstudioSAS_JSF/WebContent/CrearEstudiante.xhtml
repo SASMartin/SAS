@@ -46,9 +46,10 @@
 					<p:calendar  id="fPrimerMat" value="#{crearEstudiante.estudiante.fechaPrimerMat}" rendered="true" pattern="dd/MM/yyyy"/>
 					<p:message for="fPrimerMat" display="tooltip" />
 					
-					<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" update="grid" />
+					
 					
 					<p:growl id="message"  showDetail="true"/>
+					<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" update="grid" />
 						<p:commandButton value="Cancelar" action="#{crearEstudiante.cancelar()}" immediate="true" update="message">
 							<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
 						</p:commandButton>
