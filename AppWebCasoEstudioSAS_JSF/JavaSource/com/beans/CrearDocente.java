@@ -75,16 +75,7 @@ public class CrearDocente {
 	
 	public void crear(){
 		try {
-			System.out.println(docente.getPais().getId());
-			System.out.println(docente.getPais().getNombre());
-			System.out.println(docente.getNombre());
-			System.out.println(docente.getApellido());
-			System.out.println(docente.getCorreo());
-			System.out.println(docente.getTelefono());
-			System.out.println(docente.getFechaEgreso());
-			System.out.println(docente.getFechaNac());
-			System.out.println(docente.getFechaIngreso());
-			System.out.println(docente.getDocumento());
+			
 			serviciosFacade.crearDocente(docente);
 			
 			

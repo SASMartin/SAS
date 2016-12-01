@@ -43,14 +43,21 @@
 					<p:message for="fNac" display="tooltip" />
 					
 					<p:outputLabel for="fIng" value="Fecha de ingreso :" />
-					<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" pattern="dd/MM/yyyy"/>
+					
+					<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" pattern="dd/MM/yyyy">
+					<p:message for="fIng" display="tooltip" />
+						<p:ajax event="dateSelect" update="fEgr"/>
+					</p:calendar>
 					<p:message for="fIng" display="tooltip" />
 					
 					<p:outputLabel for="fEgr" value="Fecha de Egreso :" />
-					<p:calendar  id="fEgr" value="#{crearDocente.docente.fechaEgreso}" pattern="dd/MM/yyyy"/>
-					<p:message for="fEgr" display="tooltip" />
-			
 					
+					<p:calendar  id="fEgr" value="#{crearDocente.docente.fechaEgreso}" mindate="{crearDocente.docente.fechaIngreso}" pattern="dd/MM/yyyy" navigator="true">
+					<p:message for="fEgr" display="tooltip" />
+						<f:attribute name="fIng" value="#{crearDocente.docente.fechaIngreso}" />
+						<f:validator validatorId="validacionF"/>
+					</p:calendar>
+					<p:message for="fEgr" display="tooltip" />
 					
 					<p:growl id="message"  showDetail="true"/>
 						<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
@@ -62,6 +69,7 @@
 						<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 					</p:confirmDialog>
 					
+					
 						<!--  
 					<p:outputLabel for="Pais" value="Pais de nacimiento"/>
 					<p:selectOneMenu id="Pais" value="#{crearDocente.docente.pais}" converter="#{paisConverter}" >
@@ -72,8 +80,11 @@
 					-->
 					
 					
+					
 
 				</h:panelGrid>
+			
+			
 			
 			</h:form>
 	
