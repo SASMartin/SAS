@@ -59,7 +59,7 @@ public class CrearEstudiante {
 	
 	public String cancelar(){
 		
-		return "Menu";
+		return "index";
 	}
 
 }

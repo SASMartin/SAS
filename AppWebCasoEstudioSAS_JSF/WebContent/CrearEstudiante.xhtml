@@ -39,11 +39,16 @@
 					<p:message for="Correo" display="tooltip" />
 					
 					<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
-					<p:calendar id="fNac" value="#{crearEstudiante.estudiante.fechaNac}" required="true" pattern="dd/MM/yyyy"/>
+					<p:calendar id="fNac" value="#{crearEstudiante.estudiante.fechaNac}" required="true" pattern="dd/MM/yyyy">
+						<p:ajax event="dateSelect" update="fPrimerMat" />
+						</p:calendar>
 					<p:message for="fNac" display="tooltip" />
 					
 					<p:outputLabel for="fPrimerMat" value="Fecha de primer Matricula :" />
-					<p:calendar  id="fPrimerMat" value="#{crearEstudiante.estudiante.fechaPrimerMat}" rendered="true" pattern="dd/MM/yyyy"/>
+					<p:calendar  id="fPrimerMat" value="#{crearEstudiante.estudiante.fechaPrimerMat}" rendered="true" pattern="dd/MM/yyyy">
+						<f:attribute name="fNac" value="#{crearEstudiante.estudiante.fechaNac}" />
+						<f:validator validatorId="validacionNac"/>
+						</p:calendar>
 					<p:message for="fPrimerMat" display="tooltip" />
 					
 					

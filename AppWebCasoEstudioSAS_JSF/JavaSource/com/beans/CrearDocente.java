@@ -94,7 +94,7 @@ public class CrearDocente {
 	
 public String cancelar(){
 		
-		return "Menu";
+		return "index";
 	}
 
 
