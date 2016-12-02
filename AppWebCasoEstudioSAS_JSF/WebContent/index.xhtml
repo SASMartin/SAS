@@ -3,21 +3,28 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p= "http://primefaces.org/ui">
-
-	<h:head>
-		<title>Institución Educativa</title>
-	</h:head>
-    <h:body>
-      <ui:composition template="Templates/common.xhtml">	
-         <ui:define name="content">				
-            <br/><br/>
-             <h:link value="Crear Docente" outcome="CrearDocente" /><br/>
-             <h:link value="Crear Estudiante" outcome="CrearEstudiante" /><br/>
-             <h:link value="Consultar Docentes" outcome="ConsultaDocentes" /><br/>
-             <h:link value="Consultar Estudiantes" outcome="ConsultaEstudiantes" />			
-            <br/><br/>
-         </ui:define>
-      </ui:composition>
-   </h:body>
+	  xmlns:p= "http://primefaces.org/ui">
+	
+	<h:head> </h:head>
+	<h:body>
+	<ui:composition template="Templates/common.xhtml">	
+         <ui:define name="content">	
+			<p:menubar>
+				<p:submenu label="Servicios">
+					<p:submenu label="Crear " icon="ui-icon-document">
+						<p:menuitem value="Docente " url="CrearDocente.jsf" icon="ui-icon-arrowreturnthick-1-e"/>
+						<p:menuitem value="Estudiante " url="CrearEstudiante.jsf" icon="ui-icon-arrowreturnthick-1-e"/>
+					</p:submenu>
+										
+					<p:submenu label="Listar" icon="ui-icon-search" >
+						<p:menuitem value="Docentes " url="ConsultaDocentes.jsf" icon="ui-icon-arrowreturnthick-1-w"   />
+						<p:menuitem value="Estudiantes " url="ConsultaEstudiantes.jsf" icon="ui-icon-arrowreturnthick-1-w"   />
+					</p:submenu>
+					
+				</p:submenu>
+		
+			</p:menubar>
+		</ui:define>
+	</ui:composition>
+	</h:body>
 </html>
