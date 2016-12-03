@@ -27,7 +27,7 @@
 					<p:message for="Apellido" display="tooltip" />
 					
 					<p:outputLabel for="Documento" value="Documento:" />
-					<p:inputText id="Documento" value="#{crearEstudiante.estudiante.documento}" required="true" validator="#{listarDocentes.validate}"/>
+					<p:inputText id="Documento" value="#{crearEstudiante.estudiante.documento}" required="true" validator="#{listarEstudiantes.validate}"/>
 					<p:message for="Documento" display="tooltip" />
 					
 					<p:outputLabel for="Telefono" value="Telefono:" />
@@ -51,7 +51,11 @@
 						</p:calendar>
 					<p:message for="fPrimerMat" display="tooltip" />
 					
-					
+					<p:outputLabel for="Pais" value="Pais de nacimiento"/>
+					<p:selectOneMenu id="Pais" value="#{crearEstudiante.estudiante.pais.nombre}" converter="#{paisConverter}" binding="#{CrearEstudiante}">
+						<f:selectItems value="#{listarPaises.paises}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.nombre}" />
+					</p:selectOneMenu>
+					<p:message for="Pais" display="tooltip" />
 					
 					<p:growl id="message"  showDetail="true"/>
 					<p:commandButton value="Crear" action = "#{crearEstudiante.crear}" update="grid" />
@@ -62,7 +66,7 @@
 						<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
 						<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 					</p:confirmDialog>
-			
+					
 				</h:panelGrid>
 		
 			</h:form>

@@ -1,6 +1,7 @@
 package com.beans;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +9,10 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+import javax.validation.ValidationException;
 
 import com.dto.EstudianteDTO;
 import com.facade.ServiciosFacade;
@@ -43,5 +47,17 @@ public class ListarEstudiantes {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar listar los Estudiantes"));
 		}
 	}
- 
+
+	public void validate(FacesContext arg0 , UIComponent arg1 , Object arg2) throws ValidationException{
+		List<EstudianteDTO> lEstudiante = new ArrayList<>();
+		String documento ;
+		lEstudiante = serviciosFacade.obtenerEstudiantes();
+		for(EstudianteDTO estudiantes : lEstudiante){
+			documento= estudiantes.getDocumento();
+			if(((String)arg2).equals(documento)){				
+				throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento ya fue ingresado al systema !! ", null));
+			}
+		}
+	}
+	
 }

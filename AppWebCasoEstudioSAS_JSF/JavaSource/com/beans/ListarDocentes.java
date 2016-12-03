@@ -52,20 +52,15 @@ public class ListarDocentes {
 	}
 	
 	public void validate(FacesContext arg0 , UIComponent arg1 , Object arg2) throws ValidationException{
-		
 		List<DocenteDTO> lDocente = new ArrayList<>();
 		String documento ;
-		
 		lDocente = serviciosFacade.obtenerDocentes();
 		for(DocenteDTO docentes : lDocente){
 			documento= docentes.getDocumento();
-		if(((String)arg2).equals(documento)){
-			
-			throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento ya fue ingresado al systema !! ", null));
-		}
+			if(((String)arg2).equals(documento)){				
+				throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento ya fue ingresado al systema !! ", null));
+			}
 		}
 	}
-	
-
 		
 }

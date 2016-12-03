@@ -59,6 +59,12 @@
 					</p:calendar>
 					<p:message for="fEgr" display="tooltip" />
 					
+					<p:outputLabel for="Pais" value="Pais de nacimiento"/>
+					<p:selectOneMenu id="Pais" value="#{crearDocente.docente.pais.nombre}" converter="#{paisConverter}" binding="#{CrearDocente}">
+						<f:selectItems value="#{listarPaises.paises}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.nombre}" />
+					</p:selectOneMenu>
+					<p:message for="Pais" display="tooltip" />
+					
 					<p:growl id="message"  showDetail="true"/>
 						<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
 						<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" update="message">
@@ -68,16 +74,8 @@
 						<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
 						<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 					</p:confirmDialog>
-	
-					<p:outputLabel for="Pais" value="Pais de nacimiento"/>
-					<p:selectOneMenu id="Pais" value="#{crearDocente.docente.pais.nombre}" converter="#{paisConverter}" binding="#{CrearDocente}">
-						<f:selectItems value="#{listarPaises.paises}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.nombre}" />
-					</p:selectOneMenu>
-					<p:message for="Pais" display="tooltip" />
 
 				</h:panelGrid>
-			
-			
 			
 			</h:form>
 	

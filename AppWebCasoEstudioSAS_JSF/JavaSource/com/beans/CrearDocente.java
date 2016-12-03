@@ -24,24 +24,12 @@ public class CrearDocente {
 	private DocenteDTO docente;
 	private List<SelectItem> paisSeleccionado ;
 	
-	public ServiciosFacade getServicioFacade() {
-		return serviciosFacade;
-	}
-
-	public void setServicioFacade(ServiciosFacade serviciosFacade) {
-		this.serviciosFacade = serviciosFacade;
-	}	
-
-	public void setPaisSeleccionado(List<SelectItem> paisSeleccionado) {
-		this.paisSeleccionado = paisSeleccionado;
-	}
-	
 	public CrearDocente(){
 		if(docente==null){
 			docente = new DocenteDTO();
 			docente.setPais(new PaisesDTO());
 		}
-	}
+	}	
 
 	public ServiciosFacade getServiciosFacade() {
 		return serviciosFacade;
@@ -51,6 +39,10 @@ public class CrearDocente {
 		this.serviciosFacade = serviciosFacade;
 	}
 
+	public void setPaisSeleccionado(List<SelectItem> paisSeleccionado) {
+		this.paisSeleccionado = paisSeleccionado;
+	}
+	
 	public DocenteDTO getDocente() {
 		return docente;
 	}
@@ -80,7 +72,6 @@ public class CrearDocente {
 		if(paisSeleccionado==null){			
 			paisSeleccionado = new ArrayList<SelectItem>();		
 			List<PaisesDTO> paises = serviciosFacade.obtenerPaises();
-			//paises.clear();			
 			if(paises != null && !paises.isEmpty()){
 				SelectItem item ;
 				for(PaisesDTO paisesLista  : paises) {					

@@ -34,9 +34,8 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     
     public void crearEstudiante (EstudianteDTO est){
     	try{
-	    	Paises p = new Paises(new Long(1),"Uruguay");
-	    	//Paises p = new Paises(est.getPais().getId(),est.getPais().getNombre());
-	    	
+    		PaisesDTO dtoPais = obtenerPais(est.getPais().getNombre());
+    		Paises p = new Paises(dtoPais.getId(), dtoPais.getNombre());
 	    	Estudiantes e = new Estudiantes (est.getNombre() , est.getApellido() , est.getDocumento() , est.getTelefono() ,est.getCorreo(), p, est.getFechaNac() , est.getFechaPrimerMat());
 	    	e.setFechaPrimerMat (est.getFechaPrimerMat() );
 	    	
