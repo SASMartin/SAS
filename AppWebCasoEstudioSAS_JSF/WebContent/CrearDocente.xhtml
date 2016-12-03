@@ -41,12 +41,12 @@
 							<p:message for="Correo" display="tooltip" />
 							
 							<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
-							<p:calendar id="fNac" value="#{crearDocente.docente.fechaNac}" required="true" pattern="dd/MM/yyyy"/>
+							<p:calendar id="fNac" value="#{crearDocente.docente.fechaNac}" required="true" navigator="true" pattern="dd/MM/yyyy"/>
 							<p:message for="fNac" display="tooltip" />
 							
 							<p:outputLabel for="fIng" value="Fecha de ingreso :" />
 							
-							<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" pattern="dd/MM/yyyy">
+							<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" navigator="true" pattern="dd/MM/yyyy">
 							<p:message for="fIng" display="tooltip" />
 								<p:ajax event="dateSelect" update="fEgr"/>
 							</p:calendar>
