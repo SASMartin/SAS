@@ -12,73 +12,77 @@
 	
 		<ui:composition template="Templates/common.xhtml">	
           <ui:define name="content">
-          <p:tooltip />
-         
-			<h:form>
-				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-				<h:panelGrid  id="grid" columns="3">
-				
-					<p:outputLabel for="Nombre" value="Nombre:" />
-					<p:inputText id="Nombre" value="#{crearDocente.docente.nombre}" required="true"/>
-					<p:message for="Nombre" display="tooltip" />
+          	<div style="width:80%;text-align:left;display:block;margin-left:auto;margin-right:auto;">
+          		<p:fieldset legend="Crear Docente" style="margin-bottom:20px">          		
+		          <p:tooltip />
+		         
+					<h:form>
+						<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+						<h:panelGrid  id="grid" columns="3">
+						
+							<p:outputLabel for="Nombre" value="Nombre:" />
+							<p:inputText id="Nombre" value="#{crearDocente.docente.nombre}" required="true"/>
+							<p:message for="Nombre" display="tooltip" />
+							
+							<p:outputLabel for="Apellido" value="Apellido:"/>
+							<p:inputText id="Apellido" value="#{crearDocente.docente.apellido}" required="true"/>
+							<p:message for="Apellido" display="tooltip" />
+							
+							<p:outputLabel for="Documento" value="Documento:" />
+							<p:inputText id="Documento" value="#{crearDocente.docente.documento}" required="true" validator="#{listarDocentes.validate}"/>
+							<p:message for="Documento" display="tooltip" />
+							
+							<p:outputLabel for="Telefono" value="Telefono:" />
+							<p:inputText id="Telefono" value="#{crearDocente.docente.telefono}" />
+							<p:message for="Telefono" display="tooltip" />
+							
+							<p:outputLabel for="Correo" value="Correo:"/>
+							<p:inputText id="Correo" value="#{crearDocente.docente.correo}" />
+							<p:message for="Correo" display="tooltip" />
+							
+							<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
+							<p:calendar id="fNac" value="#{crearDocente.docente.fechaNac}" required="true" pattern="dd/MM/yyyy"/>
+							<p:message for="fNac" display="tooltip" />
+							
+							<p:outputLabel for="fIng" value="Fecha de ingreso :" />
+							
+							<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" pattern="dd/MM/yyyy">
+							<p:message for="fIng" display="tooltip" />
+								<p:ajax event="dateSelect" update="fEgr"/>
+							</p:calendar>
+							<p:message for="fIng" display="tooltip" />
+							
+							<p:outputLabel for="fEgr" value="Fecha de Egreso :" />
+							
+							<p:calendar  id="fEgr" value="#{crearDocente.docente.fechaEgreso}" mindate="{crearDocente.docente.fechaIngreso}" pattern="dd/MM/yyyy" navigator="true">
+							<p:message for="fEgr" display="tooltip" />
+								<f:attribute name="fIng" value="#{crearDocente.docente.fechaIngreso}" />
+								<f:validator validatorId="validacionF"/>
+							</p:calendar>
+							<p:message for="fEgr" display="tooltip" />
+							
+							<p:outputLabel for="Pais" value="Pais de nacimiento"/>
+							<p:selectOneMenu id="Pais" value="#{crearDocente.docente.pais.nombre}" converter="#{paisConverter}" binding="#{CrearDocente}">
+								<f:selectItems value="#{listarPaises.paises}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.nombre}" />
+							</p:selectOneMenu>
+							<p:message for="Pais" display="tooltip" />
+							
+							<p:growl id="message"  showDetail="true"/>
+								<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
+								<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" update="message">
+									<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
+								</p:commandButton>
+							<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+								<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+								<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+		
+						</h:panelGrid>
 					
-					<p:outputLabel for="Apellido" value="Apellido:"/>
-					<p:inputText id="Apellido" value="#{crearDocente.docente.apellido}" required="true"/>
-					<p:message for="Apellido" display="tooltip" />
-					
-					<p:outputLabel for="Documento" value="Documento:" />
-					<p:inputText id="Documento" value="#{crearDocente.docente.documento}" required="true" validator="#{listarDocentes.validate}"/>
-					<p:message for="Documento" display="tooltip" />
-					
-					<p:outputLabel for="Telefono" value="Telefono:" />
-					<p:inputText id="Telefono" value="#{crearDocente.docente.telefono}" />
-					<p:message for="Telefono" display="tooltip" />
-					
-					<p:outputLabel for="Correo" value="Correo:"/>
-					<p:inputText id="Correo" value="#{crearDocente.docente.correo}" />
-					<p:message for="Correo" display="tooltip" />
-					
-					<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
-					<p:calendar id="fNac" value="#{crearDocente.docente.fechaNac}" required="true" pattern="dd/MM/yyyy"/>
-					<p:message for="fNac" display="tooltip" />
-					
-					<p:outputLabel for="fIng" value="Fecha de ingreso :" />
-					
-					<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" pattern="dd/MM/yyyy">
-					<p:message for="fIng" display="tooltip" />
-						<p:ajax event="dateSelect" update="fEgr"/>
-					</p:calendar>
-					<p:message for="fIng" display="tooltip" />
-					
-					<p:outputLabel for="fEgr" value="Fecha de Egreso :" />
-					
-					<p:calendar  id="fEgr" value="#{crearDocente.docente.fechaEgreso}" mindate="{crearDocente.docente.fechaIngreso}" pattern="dd/MM/yyyy" navigator="true">
-					<p:message for="fEgr" display="tooltip" />
-						<f:attribute name="fIng" value="#{crearDocente.docente.fechaIngreso}" />
-						<f:validator validatorId="validacionF"/>
-					</p:calendar>
-					<p:message for="fEgr" display="tooltip" />
-					
-					<p:outputLabel for="Pais" value="Pais de nacimiento"/>
-					<p:selectOneMenu id="Pais" value="#{crearDocente.docente.pais.nombre}" converter="#{paisConverter}" binding="#{CrearDocente}">
-						<f:selectItems value="#{listarPaises.paises}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.nombre}" />
-					</p:selectOneMenu>
-					<p:message for="Pais" display="tooltip" />
-					
-					<p:growl id="message"  showDetail="true"/>
-						<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
-						<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" update="message">
-							<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
-						</p:commandButton>
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-						<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-					</p:confirmDialog>
-
-				</h:panelGrid>
-			
-			</h:form>
-	
+					</h:form>
+							
+				</p:fieldset>
+			</div>
 	      </ui:define>
        </ui:composition>
        

@@ -12,45 +12,49 @@
 	
 		<ui:composition template="Templates/common.xhtml">	
           <ui:define name="content">
-			<h:form id="form">
-			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-			<p:dataTable id="tabla" var = "emp" value = "#{listarEstudiantes.estudiantes}" >
-			
-				<p:column headerText="Nombre">
-					<h:outputText value="#{emp.nombre} #{emp.apellido}" />
-				</p:column>
-			
-				<p:column headerText="Documento">
-					<h:outputText value="#{emp.documento}" />
-				</p:column>
-			
-				<p:column headerText="Telefono">
-					<h:outputText value="#{emp.telefono}" />
-				</p:column>
-				
-				<p:column headerText="Correo">
-					<h:outputText value="#{emp.correo}" />
-				</p:column>
-				
-				<p:column headerText="Fecha de Nacimiento" >
-					<h:outputText value="#{emp.fechaNac}" >
-					<f:convertDateTime pattern="dd/MM/yyyy"/>
-					</h:outputText>
-				</p:column>
-				
-				<p:column headerText="Fecha de Matriculacion" >
-					<h:outputText value="#{emp.fechaPrimerMat}" >
-					<f:convertDateTime pattern = "dd/MM/yyyy"/>
-					</h:outputText>
-				</p:column>
-				
-			</p:dataTable>
-			
-			<h:panelGrid columns="2">
-			<p:commandButton value="Volver a Inicio " action="#{crearEstudiante.cancelar()}" update="form"/>
-			<p:commandButton value="Actualizar tabla" update="tabla" />
-			</h:panelGrid>
-			</h:form>
+          	<div style="width:80%;text-align:left;display:block;margin-left:auto;margin-right:auto;">
+          		<p:fieldset legend="Consulta Estudiante" style="margin-bottom:20px">   
+					<h:form id="form">
+						<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+						<p:dataTable id="tabla" var = "emp" value = "#{listarEstudiantes.estudiantes}" >
+					
+							<p:column headerText="Nombre">
+								<h:outputText value="#{emp.nombre} #{emp.apellido}" />
+							</p:column>
+						
+							<p:column headerText="Documento">
+								<h:outputText value="#{emp.documento}" />
+							</p:column>
+						
+							<p:column headerText="Telefono">
+								<h:outputText value="#{emp.telefono}" />
+							</p:column>
+							
+							<p:column headerText="Correo">
+								<h:outputText value="#{emp.correo}" />
+							</p:column>
+							
+							<p:column headerText="Fecha de Nacimiento" >
+								<h:outputText value="#{emp.fechaNac}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+								</h:outputText>
+							</p:column>
+							
+							<p:column headerText="Fecha de Matriculacion" >
+								<h:outputText value="#{emp.fechaPrimerMat}" >
+								<f:convertDateTime pattern = "dd/MM/yyyy"/>
+								</h:outputText>
+							</p:column>
+						
+						</p:dataTable>
+					
+						<h:panelGrid columns="2">
+							<p:commandButton value="Volver a Inicio " action="#{crearEstudiante.cancelar()}" update="form"/>
+							<p:commandButton value="Actualizar tabla" update="tabla" />
+						</h:panelGrid>
+					</h:form>
+				</p:fieldset>
+			</div>
 	     </ui:define>
        </ui:composition>
 	

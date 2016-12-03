@@ -5,10 +5,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p= "http://primefaces.org/ui">
 	
-	<h:head> </h:head>
+	<h:head>
+		<title>Institución Educativa</title>	
+	</h:head>
 	<h:body>
 	<ui:composition template="Templates/common.xhtml">	
          <ui:define name="content">	
+         	<div style="width:80%;text-align:left;display:block;margin-left:auto;margin-right:auto;">
 			<p:menubar>
 				<p:submenu label="Servicios">
 					<p:submenu label="Crear " icon="ui-icon-document">
@@ -19,11 +22,23 @@
 					<p:submenu label="Listar" icon="ui-icon-search" >
 						<p:menuitem value="Docentes " url="ConsultaDocentes.jsf" icon="ui-icon-arrowreturnthick-1-w"   />
 						<p:menuitem value="Estudiantes " url="ConsultaEstudiantes.jsf" icon="ui-icon-arrowreturnthick-1-w"   />
-					</p:submenu>
-					
-				</p:submenu>
-		
-			</p:menubar>
+					</p:submenu>					
+				</p:submenu>									
+			</p:menubar>			
+			<br/>
+				<div style="width:90%;text-align:left;display:block;margin-left:auto;margin-right:auto;">			
+					<p:panel header="Noticias" footer="04/11/2016">
+				        <h:panelGrid columns="2" cellpadding="10">
+				            <img src="Images/logo.png" />
+				            <h:outputText
+				                value="El Nuevo sistema de gestión educativa desarrollado por la empresa SAS+ 
+				                	le da la posibiladad a estudiantes y docentes de poder darse de alta desde 
+				                	cualquier parte y en cualquier momento. La plataforma fue lanzada en su 
+				                	primera versión (Release 1.0) el día 4 de Diciembre de 2016." />
+				        </h:panelGrid>			    
+				    </p:panel>
+			    </div>
+		    </div>
 		</ui:define>
 	</ui:composition>
 	</h:body>
