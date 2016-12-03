@@ -12,26 +12,21 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import com.dto.PaisesDTO;
-import com.facade.PaisesFacade;
+import com.facade.ServiciosFacade;
 
-
-
-
-@FacesConverter(forClass=PaisesDTO.class)
+@FacesConverter(value="paisConverter", forClass=PaisesDTO.class)
 public class PaisConverter implements Converter{
 	
 	@EJB
-	public PaisesFacade serviciosPais;
+	public ServiciosFacade serviciosPais;
 	private List<PaisesDTO> paises;
 	private PaisesDTO pais;
-	
-	
-	
-	public PaisesFacade getServiciosPais() {
+
+	public ServiciosFacade getServiciosPais() {
 		return serviciosPais;
 	}
 
-	public void setServiciosPais(PaisesFacade serviciosPais) {
+	public void setServiciosPais(ServiciosFacade serviciosPais) {
 		this.serviciosPais = serviciosPais;
 	}
 
@@ -52,16 +47,15 @@ public class PaisConverter implements Converter{
 	}
 	
 	public PaisConverter(){
-		if(pais==null){
+		if(pais==null)
 			pais = new PaisesDTO() ;
-		}
 	}
 
 	@PostConstruct
 	public void inicializar () throws SQLException{
 		try {
 			if(paises==null)
-				paises = serviciosPais.listaPaises();
+				paises = serviciosPais.obtenerPaises();
 		} catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar listar los Docentes"));
@@ -69,20 +63,15 @@ public class PaisConverter implements Converter{
 	}
 	
 	@Override
-	public Object getAsObject(FacesContext context , UIComponent component,String value) throws ConverterException{
-		
-		System.out.println(value+"ConverterValue");
-			if(value !=null && value.toString().length()>0){
-				pais =serviciosPais.obtenerUnPaisDTO(value);
-				return pais;
-				
-				
-				
-			}else{
-			
-				System.out.println(value);
-		return null;
-			}
+	public Object getAsObject(FacesContext context , UIComponent component, String value) throws ConverterException{		
+		System.out.println(value+" ConverterValue");
+		if(value !=null && value.toString().length()>0){
+			pais = serviciosPais.obtenerPais(value);
+			return pais;
+		}else{		
+			System.out.println(value);
+			return null;
+		}
 	}
 	
 	@Override

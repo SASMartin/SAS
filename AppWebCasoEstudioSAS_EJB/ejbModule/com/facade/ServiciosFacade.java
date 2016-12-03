@@ -24,15 +24,10 @@ import com.entities.Paises;
 @Stateless
 @LocalBean
 public class ServiciosFacade implements ServiciosFacadeRemote {
-
-	
 	
 	@PersistenceContext
 	private EntityManager em ;
 	
-    /**
-     * Default constructor. 
-     */
     public ServiciosFacade() {
         // TODO Auto-generated constructor stub
     }
@@ -55,13 +50,10 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     }
     
     public void crearDocente (DocenteDTO doc){
-    	try{
-	    	Paises p = new Paises(new Long(1),"Uruguay");
-    	
-    		
-	    	//Paises p = new Paises(doc.getPais().getId(),doc.getPais().getNombre());
-	    	
-	    	Docentes d = new Docentes(doc.getNombre(), doc.getApellido(), doc.getDocumento(), doc.getTelefono(), doc.getCorreo(),p, doc.getFechaNac(),doc.getFechaIngreso(),doc.getFechaEgreso());
+    	try{    	    	
+    		PaisesDTO dtoPais = obtenerPais(doc.getPais().getNombre());
+    		Paises p = new Paises(dtoPais.getId(), dtoPais.getNombre());	
+	    	Docentes d = new Docentes(doc.getNombre(), doc.getApellido(), doc.getDocumento(), doc.getTelefono(), doc.getCorreo(), p, doc.getFechaNac(),doc.getFechaIngreso(),doc.getFechaEgreso());
 	    	d.getFechaEgreso();
 	    	d.getFechaIngreso();
 	    	Query q = em.createNativeQuery("select SEQ_ID_DOCENTE.nextval from dual");
@@ -82,10 +74,10 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 			TypedQuery<Docentes> query = em.createQuery("FROM Docentes",Docentes.class); 		
 	
 			for(Docentes doc:query.getResultList()){
-				DocenteDTO estDTO = new DocenteDTO(doc.getNombre(),doc.getTelefono(), doc.getDocumento(),doc.getApellido(),doc.getFechaNac(),
-						doc.getCorreo(),new PaisesDTO(doc.getPais().getNOMBRE()),doc.getFechaEgreso(),doc.getFechaIngreso());
+				DocenteDTO docDTO = new DocenteDTO(doc.getNombre(),doc.getTelefono(), doc.getDocumento(),doc.getApellido(),doc.getFechaNac(),
+						doc.getCorreo(),new PaisesDTO(doc.getPais().getID_PAIS(), doc.getPais().getNOMBRE()),doc.getFechaEgreso(),doc.getFechaIngreso());
 					
-				docenteDTO.add(estDTO);
+				docenteDTO.add(docDTO);
 			}			
     	}catch(PersistenceException ex){
     		System.out.println("Error SQL: " + ex.getMessage());
@@ -102,7 +94,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	   		
 	   		for(Estudiantes est:query.getResultList()){
 	   			EstudianteDTO estDTO = new EstudianteDTO(est.getNombre(),est.getTelefono(), est.getDocumento(),est.getApellido(),est.getFechaNac(),
-	   					est.getCorreo(),new PaisesDTO(est.getPais().getNOMBRE()), est.getFechaPrimerMat());
+	   					est.getCorreo(),new PaisesDTO(est.getPais().getID_PAIS(), est.getPais().getNOMBRE()), est.getFechaPrimerMat());
 	   				
 	   			estudianteDTO.add(estDTO);
 	   		}
@@ -112,4 +104,29 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
    		return estudianteDTO;
    	}
 
+    @Override
+   	public List<PaisesDTO> obtenerPaises(){
+    	List<PaisesDTO> paisDTO = null;
+    	try{
+    		paisDTO = new ArrayList<PaisesDTO>();
+	    	TypedQuery<Paises> query = em.createQuery("FROM Paises",Paises.class);	   		
+	   		
+	   		for(Paises paises:query.getResultList()){
+	   			PaisesDTO estDTO = new PaisesDTO(paises.getID_PAIS(), paises.getNOMBRE());	   				
+	   			paisDTO.add(estDTO);
+	   		}
+   		}catch(PersistenceException ex){
+    		System.out.println("Error SQL: " + ex.getMessage());
+    	}
+   		return paisDTO;
+   	}
+    
+    @Override
+    public PaisesDTO obtenerPais(String nombre){    		
+    	Query query = em.createQuery("select new com.dto.PaisesDTO( P.ID_PAIS , P.NOMBRE) from Paises p where p.NOMBRE like :nombre " );
+		query.setParameter("nombre", nombre);
+		PaisesDTO pais = (PaisesDTO) query.getSingleResult() ;		 
+		return pais ;
+	 }
+    
 }

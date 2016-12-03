@@ -2,7 +2,6 @@ package com.beans;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,13 +10,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
 import javax.faces.validator.ValidatorException;
 import javax.validation.ValidationException;
 
 import com.dto.DocenteDTO;
 import com.facade.ServiciosFacade;
-import com.sun.xml.internal.ws.api.Component;
 
 @ManagedBean
 @RequestScoped

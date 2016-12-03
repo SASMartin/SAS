@@ -12,14 +12,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import com.dto.PaisesDTO;
-import com.facade.PaisesFacade;
+import com.facade.ServiciosFacade;
 
 @ManagedBean
 @ApplicationScoped
 public class ListarPaises {
 	
 	@EJB
-	private PaisesFacade servicioPais;
+	private ServiciosFacade servicioPais;
 	private List<SelectItem> paisSeleccionado ;
 	private List<PaisesDTO> paises;
 	
@@ -30,10 +30,10 @@ public class ListarPaises {
 	public void setPaises(List<PaisesDTO> paises) {
 		this.paises = paises;
 	}
-	public PaisesFacade getServicioPais() {
+	public ServiciosFacade getServicioPais() {
 		return servicioPais;
 	}
-	public void setServicioPais(PaisesFacade servicioPais) {
+	public void setServicioPais(ServiciosFacade servicioPais) {
 		this.servicioPais = servicioPais;
 	}
 	public List<SelectItem> getPaisSeleccionado() {
@@ -47,12 +47,11 @@ public class ListarPaises {
 	public void inicializar () throws SQLException{
 		try {
 			if(paises==null)
-				paises = servicioPais.listaPaises();
+				paises = servicioPais.obtenerPaises();
 		} catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar listar los Paises"));
 		}
 	}
-	
 	
 }

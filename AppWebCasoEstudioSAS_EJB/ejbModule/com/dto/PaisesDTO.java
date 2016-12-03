@@ -6,26 +6,23 @@ public class PaisesDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id ;
+	private String nombre ;
+	
+	public PaisesDTO() {
+		super();
+	}
+	
+	public PaisesDTO(Long id, String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+	}
+	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	private String nombre ;
-
-	
-	public PaisesDTO(String nombre) {
-		super();
-		this.nombre = nombre;
-	}
-
-	public PaisesDTO(Long id, String nombre) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
 	}
 
 	public String getNombre() {
@@ -41,11 +38,5 @@ public class PaisesDTO implements Serializable{
 		return "NombreDTO : " + nombre;
 		
 	}
-
-	public PaisesDTO() {
-		super();
-	}
-
-	
 
 }
