@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,10 +26,7 @@ public class CrearEstudiante {
 	private List<SelectItem> paisSeleccionado ;
 	
 	public CrearEstudiante(){
-		if(estudiante == null){
-			estudiante = new EstudianteDTO();		
-			estudiante.setPais(new PaisesDTO());
-		}
+		//Default Constructor
 	}
 
 	public ServiciosFacade getServiciosFacade() {
@@ -45,6 +43,10 @@ public class CrearEstudiante {
 	
 	
 	public EstudianteDTO getEstudiante() {
+		if(estudiante == null){
+			estudiante = new EstudianteDTO();		
+			estudiante.setPais(new PaisesDTO());
+		}
 		return estudiante;
 	}
 
@@ -81,6 +83,14 @@ public class CrearEstudiante {
 			}
 		}		
 		return paisSeleccionado;
+	}
+	
+	@PostConstruct
+	public void init(){
+		if(estudiante==null){
+			estudiante = new EstudianteDTO();
+			estudiante.setPais(new PaisesDTO());
+		}
 	}
 	
 }
