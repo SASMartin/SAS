@@ -7,19 +7,22 @@
 
 	<h:head></h:head>
    	<h:body> 
+   	<div>
        <div >
           <ui:insert name="header" >
              <ui:include src="header.xhtml" />
           </ui:insert> 
        </div>
        <br/>
-       <div >
+       <div>
           <ui:insert name="content" >
              <ui:include src="contents.xhtml" />
           </ui:insert>    
        </div>
+       </div>
        <br/>
-       <div >
+       
+       <div style="bottom: 0; position: fixed">
           <ui:insert name="footer" >
              <ui:include src="footer.xhtml" />
           </ui:insert>

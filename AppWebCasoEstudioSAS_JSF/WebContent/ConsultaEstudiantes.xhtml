@@ -12,8 +12,8 @@
 	
 		<ui:composition template="Templates/common.xhtml">	
           <ui:define name="content">
-          	<div style="width:90%;text-align:left;display:block;margin-left:auto;margin-right:auto;">
-          		<p:fieldset legend="Consulta Estudiante" style="margin-bottom:20px">   
+          	<div style="width:90%;text-align:left;display:block;margin-left:auto;margin-right:auto;margin-bottom:100px">
+          		<p:fieldset legend="Consulta Estudiante">   
 					<h:form id="form">
 						<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 						<p:dataTable id="tabla" var = "emp" value = "#{listarEstudiantes.estudiantes}" >
