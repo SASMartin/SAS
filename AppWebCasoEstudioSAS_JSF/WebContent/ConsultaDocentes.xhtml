@@ -18,7 +18,7 @@
 			         	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 						<p:dataTable id="tabla" var = "emp" value = "#{listarDocentes.docentes}" >
 						
-							<p:column headerText="Nombre">
+							<p:column headerText="Nombre" colspan="2">
 								<h:outputText value="#{emp.nombre} #{emp.apellido}" />
 							</p:column>
 						
@@ -30,7 +30,7 @@
 								<h:outputText value="#{emp.telefono}" />
 							</p:column>
 							
-							<p:column headerText="Correo">
+							<p:column headerText="Correo" colspan="2">
 								<h:outputText value="#{emp.correo}" />
 							</p:column>
 							
