@@ -21,23 +21,33 @@
 					<h:panelGrid id="grid" columns="3">
 					
 						<p:outputLabel for="Nombre" value="Nombre:" />
-						<p:inputText id="Nombre" value="#{crearEstudiante.estudiante.nombre}" required="true"/>
+						<p:inputText id="Nombre" value="#{crearEstudiante.estudiante.nombre}" validatorMessage="El nombre solo puede contener letras" required="true">
+							<f:validateRegex pattern="[A-Za-z]+" />
+						</p:inputText>
 						<p:message for="Nombre" display="tooltip" />
 						
 						<p:outputLabel for="Apellido" value="Apellido:"/>
-						<p:inputText id="Apellido" value="#{crearEstudiante.estudiante.apellido}" required="true"/>
+						<p:inputText id="Apellido" value="#{crearEstudiante.estudiante.apellido}" validatorMessage="El apellido solo puede contener letras" required="true">
+							<f:validateRegex pattern="[A-Za-z]+" />
+						</p:inputText>
 						<p:message for="Apellido" display="tooltip" />
 						
 						<p:outputLabel for="Documento" value="Documento:" />
-						<p:inputText id="Documento" value="#{crearEstudiante.estudiante.documento}" required="true" validator="#{listarEstudiantes.validate}"/>
+						<p:inputText id="Documento" value="#{crearEstudiante.estudiante.documento}" validatorMessage="El documento solo puede contener dígitos" required="true" validator="#{listarEstudiantes.validate}">
+							<f:validateRegex pattern="([0-9]+)?" />
+						</p:inputText>
 						<p:message for="Documento" display="tooltip" />
 						
-						<p:outputLabel for="Telefono" value="Telefono:" />
-						<p:inputText id="Telefono" value="#{crearEstudiante.estudiante.telefono}" />
+						<p:outputLabel for="Telefono" value="Teléfono:" />
+						<p:inputText id="Telefono" value="#{crearEstudiante.estudiante.telefono}" validatorMessage="El número de teléfono solo puede contener dígitos">
+							<f:validateRegex pattern="([0-9]+)?" />
+						</p:inputText>
 						<p:message for="Telefono" display="tooltip" />
 						
 						<p:outputLabel for="Correo" value="Correo:"/>
-						<p:inputText id="Correo" value="#{crearEstudiante.estudiante.correo}" />
+						<p:inputText id="Correo" value="#{crearEstudiante.estudiante.correo}" validatorMessage="Formato de correo incorrecto" >
+							<f:validateRegex pattern="(.+@.+\.[a-zA-Z]+)?" />
+						</p:inputText>
 						<p:message for="Correo" display="tooltip" />
 						
 						<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
@@ -53,7 +63,7 @@
 							</p:calendar>
 						<p:message for="fPrimerMat" display="tooltip" />
 						
-						<p:outputLabel for="Pais" value="Pais de nacimiento"/>
+						<p:outputLabel for="Pais" value="Pais de Nacimiento"/>
 						<p:selectOneMenu id="Pais" value="#{crearEstudiante.estudiante.pais.nombre}" converter="#{paisConverter}" binding="#{CrearEstudiante}">
 							<f:selectItems value="#{listarPaises.paises}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.nombre}" />
 						</p:selectOneMenu>
@@ -65,7 +75,7 @@
 								<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
 							</p:commandButton>
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-							<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+							<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
 							<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 						</p:confirmDialog>
 						

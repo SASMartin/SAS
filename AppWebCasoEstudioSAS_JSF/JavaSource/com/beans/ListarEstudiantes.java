@@ -55,7 +55,7 @@ public class ListarEstudiantes {
 		for(EstudianteDTO estudiantes : lEstudiante){
 			documento= estudiantes.getDocumento();
 			if(((String)arg2).equals(documento)){				
-				throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento ya fue ingresado al systema !! ", null));
+				throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento ya fue ingresado al sistema !! ", null));
 			}
 		}
 	}

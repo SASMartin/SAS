@@ -108,7 +108,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     	List<PaisesDTO> paisDTO = null;
     	try{
     		paisDTO = new ArrayList<PaisesDTO>();
-	    	TypedQuery<Paises> query = em.createQuery("FROM Paises",Paises.class);	   		
+	    	TypedQuery<Paises> query = em.createQuery("FROM Paises ORDER BY NOMBRE",Paises.class);	   		
 	   		
 	   		for(Paises paises:query.getResultList()){
 	   			PaisesDTO estDTO = new PaisesDTO(paises.getID_PAIS(), paises.getNOMBRE());	   				
