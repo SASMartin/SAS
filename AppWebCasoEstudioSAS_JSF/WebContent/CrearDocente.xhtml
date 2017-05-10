@@ -51,27 +51,17 @@
 							<p:message for="Correo" display="tooltip" />
 							
 							<p:outputLabel for="fNac" value="Fecha de Nacimiento:"/>
-<<<<<<< HEAD
 							<p:calendar id="fNac" value="#{crearDocente.docente.fechaNac}" required="true" navigator="true" yearRange="c-100:c+10" pattern="dd/MM/yyyy"/>
-=======
-							<p:calendar id="fNac" value="#{crearDocente.docente.fechaNac}" required="true" navigator="true" pattern="dd/MM/yyyy"/>
->>>>>>> branch 'master' of https://github.com/SASMartin/SAS.git
 							<p:message for="fNac" display="tooltip" />
 							
 							<p:outputLabel for="fIng" value="Fecha de Ingreso :" />
-							
-<<<<<<< HEAD
 							<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" navigator="true" yearRange="c-100:c+10" pattern="dd/MM/yyyy">
-=======
-							<p:calendar  id="fIng" value="#{crearDocente.docente.fechaIngreso}" required="true" navigator="true" pattern="dd/MM/yyyy">
->>>>>>> branch 'master' of https://github.com/SASMartin/SAS.git
 							<p:message for="fIng" display="tooltip" />
 								<p:ajax event="dateSelect" update="fEgr"/>
 							</p:calendar>
 							<p:message for="fIng" display="tooltip" />
 							
 							<p:outputLabel for="fEgr" value="Fecha de Egreso :" />
-							
 							<p:calendar  id="fEgr" value="#{crearDocente.docente.fechaEgreso}" mindate="{crearDocente.docente.fechaIngreso}" navigator="true" yearRange="c-100:c+10" pattern="dd/MM/yyyy">
 							<p:message for="fEgr" display="tooltip" />
 								<f:attribute name="fIng" value="#{crearDocente.docente.fechaIngreso}" />
