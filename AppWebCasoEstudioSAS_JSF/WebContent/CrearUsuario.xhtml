@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p= "http://primefaces.org/ui">
+
+	<h:head>
+		<title>Crear Usuario</title>
+	</h:head> 
+	<body> 
+		<ui:composition template="Templates/common.xhtml">	
+          <ui:define name="content">
+          	<div style="width:80%;text-align:left;display:block;margin-left:auto;margin-right:auto;margin-bottom:100px">
+          		<p:fieldset legend="Crear Usuario">          		
+		          <p:tooltip />
+		          
+		          <h:form>
+		        		<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+						<h:panelGrid  id="grid" columns="3">
+						<p:outputLabel for="Usuario" value="Usuario:" />
+						<p:inputText id= "Usuario" values="#{crearUsuario.usuario.usuario}">
+						
+						</p:inputText>
+						<p:message for="Usuario" display="tooltip" />
+						
+						<p:outputLabel for="Password" value="Password:"/>
+						<p:inputText id="Password" value = "#{crearUsuario.usuario.contrasenia}">
+						
+						</p:inputText>
+						<p:message for="Password" display="tooltip" />
+						
+						<p:outputLabel for="NomCompleto" value="Nombre Completo :" />
+						
+						<p:inputText id = "NomCompleto" value = "#{crearUsuario.usuario.nomCompleto}" >
+					
+						</p:inputText>
+						<p:message for="NomCompleto" display="tooltip" />
+						
+						<p:growl id="message"  showDetail="true"/>
+						<p:commandButton value="Crear" action = "#{crearUsuario.crear()}" update="grid" /> 
+						<p:commandButton value="Cancelar" action="#{crearUsuario.cancelar()}" immediate="true" update="message">
+							<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
+						</p:commandButton>
+						
+		          
+		          
+		          	</h:panelGrid>
+		          </h:form>
+		        
+		    </p:fieldset>
+			</div>
+	      </ui:define>
+       </ui:composition>      
+
+	</body> 
+	</html>
