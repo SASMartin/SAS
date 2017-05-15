@@ -7,28 +7,34 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import com.dto.UsuarioDTO;
-import com.facade.ServicioUsuario;
+import com.facade.ServiciosFacade;
 
 @ManagedBean
 @SessionScoped
 public class CrearUsuario {
 
 	@EJB
-	private ServicioUsuario serviciosUsuarios ;
+	private ServiciosFacade serviciosFacade ;
 	private UsuarioDTO usuario ;
 	
 	
 	public CrearUsuario() {
-		super();
+		
 	}
 
-	public ServicioUsuario getServiciosUsuarios() {
-		return serviciosUsuarios;
+	
+
+	public ServiciosFacade getServiciosFacade() {
+		return serviciosFacade;
 	}
 
-	public void setServiciosUsuarios(ServicioUsuario serviciosUsuarios) {
-		this.serviciosUsuarios = serviciosUsuarios;
+
+
+	public void setServiciosFacade(ServiciosFacade serviciosFacade) {
+		this.serviciosFacade = serviciosFacade;
 	}
+
+
 
 	public UsuarioDTO getUsuario() {
 		if(usuario==null){
@@ -44,7 +50,7 @@ public class CrearUsuario {
 	
 	public void crear(){
 		try{
-			serviciosUsuarios.crearUsuario(usuario);
+			serviciosFacade.crearUsuario(usuario);
 			FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Usuario creado exitosamente"));
 			usuario=null;

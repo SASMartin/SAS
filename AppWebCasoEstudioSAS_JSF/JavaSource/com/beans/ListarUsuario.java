@@ -13,26 +13,29 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.validation.ValidationException;
 import com.dto.UsuarioDTO;
-import com.facade.ServicioUsuario;
+import com.facade.ServiciosFacade;
 
 @ManagedBean
 @RequestScoped
 public class ListarUsuario {
 	
 	@EJB
-	private ServicioUsuario serviciosUsuarios ;
+	private ServiciosFacade serviciosFacade ;
 	private List<UsuarioDTO> usuario ;
 	
 	
 	public ListarUsuario() {
 		super();
 	}
-	public ServicioUsuario getServiciosUsuarios() {
-		return serviciosUsuarios;
+
+	public ServiciosFacade getServiciosFacade() {
+		return serviciosFacade;
 	}
-	public void setServiciosUsuarios(ServicioUsuario serviciosUsuarios) {
-		this.serviciosUsuarios = serviciosUsuarios;
+
+	public void setServiciosFacade(ServiciosFacade serviciosFacade) {
+		this.serviciosFacade = serviciosFacade;
 	}
+
 	public List<UsuarioDTO> getUsuario() {
 		return usuario;
 	}
@@ -44,7 +47,7 @@ public class ListarUsuario {
 	public void inicializar () throws SQLException{
 		try{
 			if(usuario==null)
-				usuario = serviciosUsuarios.otenerUsuarios();
+				usuario = serviciosFacade.otenerUsuarios();
 		}catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar listar los Usuarios"));
@@ -54,7 +57,7 @@ public class ListarUsuario {
 	public void validate(FacesContext arg0 , UIComponent arg1 , Object arg2) throws ValidationException{
 		List<UsuarioDTO> lusuario = new ArrayList<>();
 		String usuarioNom ;
-		lusuario = serviciosUsuarios.otenerUsuarios();
+		lusuario = serviciosFacade.otenerUsuarios();
 		for(UsuarioDTO usuario: lusuario){
 			usuarioNom= usuario.getUsuario();
 			if(((String)arg2).equals(usuarioNom)){				

@@ -13,9 +13,11 @@ import javax.persistence.TypedQuery;
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
 import com.dto.PaisesDTO;
+import com.dto.UsuarioDTO;
 import com.entities.Docentes;
 import com.entities.Estudiantes;
 import com.entities.Paises;
+import com.entities.Usuario;
 
 /**
  * Session Bean implementation class PersonaFacade
@@ -127,5 +129,47 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 		PaisesDTO pais = (PaisesDTO) query.getSingleResult() ;		 
 		return pais ;
 	 }
+    
+    //Servicios de usuario implementados 4 semestre 
+    
+    public void crearUsuario (UsuarioDTO usu){
+    	try{
+    		//encriptacion 
+    		
+    		//String textoSinEncriptar = usu.getContrasenia(); 
+    		//String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar); 
+    		
+    		
+    		Usuario u = new Usuario(usu.getUsuario(), usu.getContrasenia(), usu.getNomCompleto());
+    		
+    		Query q = em.createNativeQuery("select SEQ_ID_USUARIO.nextval from dual");
+	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
+	    	u.setId(codigo.longValue());
+	    	em.persist(u);
+    		
+    	}catch(PersistenceException ex){
+    		System.out.println("Error SQL: " + ex.getMessage());
+    	}
+    	
+    }
+    
+    @Override
+    public List<UsuarioDTO> otenerUsuarios(){
+    	List<UsuarioDTO> usuarioDTO = null;
+    	try{
+    		usuarioDTO = new ArrayList<UsuarioDTO>();
+    		TypedQuery<Usuario> query = em.createQuery("FROM Usuarios",Usuario.class);
+    			for(Usuario usu:query.getResultList()){
+    				UsuarioDTO usuDTO = new UsuarioDTO(usu.getUsuario(),usu.getContrasenia(), usu.getNomCompleto());
+    			usuarioDTO.add(usuDTO);
+    			}
+    		
+    		
+    	}catch(PersistenceException ex){
+    		System.out.println("Error SQL: " + ex.getMessage());
+    	} return usuarioDTO;
+    	
+    }
+    
     
 }

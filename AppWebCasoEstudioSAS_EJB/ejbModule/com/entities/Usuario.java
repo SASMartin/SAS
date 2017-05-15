@@ -18,58 +18,67 @@ public class Usuario implements Serializable {
 	@Id
 	@SequenceGenerator(name="SEQ_ID_USUARIO",sequenceName="SEQ_ID_USUARIO",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_ID_USUARIO")
-	private Long ID_USUARIO;
+	@Column(name="ID_USUARIO")
+	private Long id;
 	
-	@Column(nullable=false ,unique = true)
-	   private String USUARIO ;
+	@Column(name = "USUARIO" ,unique = true)
+	   private String usuario ;
 	
-	@Column(nullable=false )
-	   private String CONTRASENIA ;
+	@Column(name = "CONTRASENIA" )
+	   private String contrasenia ;
 	
-	@Column(nullable=false )
-	   private String NOM_COMPLETO ;
+	@Column(name = "NOM_COMPLETO" )
+	   private String nomCompleto ;
 
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(String uSUARIO, String cONTRASENIA, String nOM_COMPLETO) {
+	public Usuario(String usuario, String contrasenia, String nomCompleto) {
 		super();
-		USUARIO = uSUARIO;
-		CONTRASENIA = cONTRASENIA;
-		NOM_COMPLETO = nOM_COMPLETO;
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+		this.nomCompleto = nomCompleto;
 	}
 
-	public Long getID_USUARIO() {
-		return ID_USUARIO;
+	public Usuario(Long id, String usuario, String contrasenia, String nomCompleto) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+		this.nomCompleto = nomCompleto;
 	}
 
-	public void setID_USUARIO(Long iD_USUARIO) {
-		ID_USUARIO = iD_USUARIO;
+	public Long getId() {
+		return id;
 	}
 
-	public String getUSUARIO() {
-		return USUARIO;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setUSUARIO(String uSUARIO) {
-		USUARIO = uSUARIO;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public String getCONTRASENIA() {
-		return CONTRASENIA;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
-	public void setCONTRASENIA(String cONTRASENIA) {
-		CONTRASENIA = cONTRASENIA;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
-	public String getNOM_COMPLETO() {
-		return NOM_COMPLETO;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
-	public void setNOM_COMPLETO(String nOM_COMPLETO) {
-		NOM_COMPLETO = nOM_COMPLETO;
+	public String getNomCompleto() {
+		return nomCompleto;
+	}
+
+	public void setNomCompleto(String nomCompleto) {
+		this.nomCompleto = nomCompleto;
 	}
 
 	public static long getSerialversionuid() {
@@ -77,5 +86,6 @@ public class Usuario implements Serializable {
 	}
 	
 	
-   
+	
+
 }

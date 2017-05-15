@@ -5,6 +5,7 @@ import javax.ejb.Remote;
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
 import com.dto.PaisesDTO;
+import com.dto.UsuarioDTO;
 
 @Remote
 public interface ServiciosFacadeRemote {
@@ -16,4 +17,6 @@ public interface ServiciosFacadeRemote {
 	public List<PaisesDTO> obtenerPaises();
 	public PaisesDTO obtenerPais(String nombre);
 	
+	public void crearUsuario (UsuarioDTO usu);
+	public List<UsuarioDTO> otenerUsuarios();
 }
