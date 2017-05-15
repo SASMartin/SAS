@@ -10,6 +10,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
 import com.dto.PaisesDTO;
@@ -131,22 +134,18 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	 }
     
     //Servicios de usuario implementados 4 semestre 
-    
     public void crearUsuario (UsuarioDTO usu){
     	try{
-    		//encriptacion 
+    		//Encriptacion 
+    		String plainPass = usu.getContrasenia(); 
+    		String encriptedPass = DigestUtils.md5Hex(plainPass); 
     		
-    		//String textoSinEncriptar = usu.getContrasenia(); 
-    		//String textoEncriptadoConMD5 = DigestUtils.md5Hex(textoSinEncriptar); 
-    		
-    		
-    		Usuario u = new Usuario(usu.getUsuario(), usu.getContrasenia(), usu.getNomCompleto());
+    		Usuario u = new Usuario(usu.getUsuario(), encriptedPass, usu.getNomCompleto());
     		
     		Query q = em.createNativeQuery("select SEQ_ID_USUARIO.nextval from dual");
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
 	    	u.setId(codigo.longValue());
-	    	em.persist(u);
-    		
+	    	em.persist(u); 		
     	}catch(PersistenceException ex){
     		System.out.println("Error SQL: " + ex.getMessage());
     	}
@@ -159,17 +158,13 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     	try{
     		usuarioDTO = new ArrayList<UsuarioDTO>();
     		TypedQuery<Usuario> query = em.createQuery("FROM Usuarios",Usuario.class);
-    			for(Usuario usu:query.getResultList()){
-    				UsuarioDTO usuDTO = new UsuarioDTO(usu.getUsuario(),usu.getContrasenia(), usu.getNomCompleto());
-    			usuarioDTO.add(usuDTO);
-    			}
-    		
-    		
+			for(Usuario usu:query.getResultList()){
+				UsuarioDTO usuDTO = new UsuarioDTO(usu.getUsuario(),usu.getContrasenia(), usu.getNomCompleto());
+			usuarioDTO.add(usuDTO);
+			}
     	}catch(PersistenceException ex){
     		System.out.println("Error SQL: " + ex.getMessage());
     	} return usuarioDTO;
-    	
     }
-    
-    
+       
 }
