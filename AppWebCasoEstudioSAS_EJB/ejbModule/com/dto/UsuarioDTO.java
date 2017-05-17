@@ -4,9 +4,8 @@ import java.io.Serializable;
 
 public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	private Long id;
-	private String usuario;
+	private String nomUsuario;
 	private String contrasenia;
 	private String nomCompleto;
 	
@@ -16,19 +15,19 @@ public class UsuarioDTO implements Serializable {
 	
 	
 
-	public UsuarioDTO(String usuario, String contrasenia, String nomCompleto) {
+	public UsuarioDTO(String nomUsuario, String contrasenia, String nomCompleto) {
 		super();
-		this.usuario = usuario;
+		this.nomUsuario = nomUsuario;
 		this.contrasenia = contrasenia;
 		this.nomCompleto = nomCompleto;
 	}
 
 
 
-	public UsuarioDTO(Long id, String usuario, String contrasenia, String nomCompleto) {
+	public UsuarioDTO(Long id, String nomUsuario, String contrasenia, String nomCompleto) {
 		super();
 		this.id = id;
-		this.usuario = usuario;
+		this.nomUsuario = nomUsuario;
 		this.contrasenia = contrasenia;
 		this.nomCompleto = nomCompleto;
 	}
@@ -41,12 +40,12 @@ public class UsuarioDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getNomUsuario() {
+		return nomUsuario;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setNomUsuario(String nomUsuario) {
+		this.nomUsuario = nomUsuario;
 	}
 
 	public String getContrasenia() {

@@ -1,6 +1,9 @@
 package com.facade;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.LocalBean;
@@ -11,8 +14,6 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
 import com.dto.PaisesDTO;
@@ -20,7 +21,7 @@ import com.dto.UsuarioDTO;
 import com.entities.Docentes;
 import com.entities.Estudiantes;
 import com.entities.Paises;
-import com.entities.Usuario;
+import com.entities.Usuarios;
 
 /**
  * Session Bean implementation class PersonaFacade
@@ -138,15 +139,18 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     	try{
     		//Encriptacion 
     		String plainPass = usu.getContrasenia(); 
-    		String encriptedPass = DigestUtils.md5Hex(plainPass); 
+    		MessageDigest m = MessageDigest.getInstance("MD5");
+    	    m.update(plainPass.getBytes(),0,plainPass.length());
+    	    String encriptedPass = (new BigInteger(1,m.digest()).toString(16));
     		
-    		Usuario u = new Usuario(usu.getUsuario(), encriptedPass, usu.getNomCompleto());
+    		Usuarios u = new Usuarios(usu.getNomUsuario(), encriptedPass, usu.getNomCompleto());
     		
     		Query q = em.createNativeQuery("select SEQ_ID_USUARIO.nextval from dual");
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
-	    	u.setId(codigo.longValue());
+	    	u.setID_USUARIO(codigo.longValue());
+	    	u.setUsuario("HARCODE");//TODO: SACAR HARCODE!!!
 	    	em.persist(u); 		
-    	}catch(PersistenceException ex){
+    	}catch(PersistenceException | NoSuchAlgorithmException ex){
     		System.out.println("Error SQL: " + ex.getMessage());
     	}
     	
@@ -157,9 +161,9 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     	List<UsuarioDTO> usuarioDTO = null;
     	try{
     		usuarioDTO = new ArrayList<UsuarioDTO>();
-    		TypedQuery<Usuario> query = em.createQuery("FROM Usuarios",Usuario.class);
-			for(Usuario usu:query.getResultList()){
-				UsuarioDTO usuDTO = new UsuarioDTO(usu.getUsuario(),usu.getContrasenia(), usu.getNomCompleto());
+    		TypedQuery<Usuarios> query = em.createQuery("FROM Usuarios",Usuarios.class);
+			for(Usuarios usu:query.getResultList()){
+				UsuarioDTO usuDTO = new UsuarioDTO(usu.getUsuario(),usu.getContrasenia(), usu.getNombre());
 			usuarioDTO.add(usuDTO);
 			}
     	}catch(PersistenceException ex){

@@ -17,18 +17,13 @@ public class CrearUsuario {
 	private ServiciosFacade serviciosFacade ;
 	private UsuarioDTO usuario ;
 	
-	
 	public CrearUsuario() {
-		
-	}
-
-	
+		//Default Constructor
+	}	
 
 	public ServiciosFacade getServiciosFacade() {
 		return serviciosFacade;
 	}
-
-
 
 	public void setServiciosFacade(ServiciosFacade serviciosFacade) {
 		this.serviciosFacade = serviciosFacade;
@@ -54,7 +49,6 @@ public class CrearUsuario {
 			FacesContext.getCurrentInstance().addMessage("form:MensajeLbl", 
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Usuario creado exitosamente"));
 			usuario=null;
-			
 		}catch(Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar crear un Usuario"));			
@@ -70,9 +64,7 @@ public class CrearUsuario {
 	public void init(){
 		if(usuario==null){
 			usuario = new UsuarioDTO();
-			
 		}
 	}
-	
 	
 }

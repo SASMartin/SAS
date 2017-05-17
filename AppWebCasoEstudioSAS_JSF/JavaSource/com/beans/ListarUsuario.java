@@ -59,7 +59,7 @@ public class ListarUsuario {
 		String usuarioNom ;
 		lusuario = serviciosFacade.otenerUsuarios();
 		for(UsuarioDTO usuario: lusuario){
-			usuarioNom= usuario.getUsuario();
+			usuarioNom= usuario.getNomUsuario();
 			if(((String)arg2).equals(usuarioNom)){				
 				throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El nombre de usuario ya fue ingresado al sistema !! ", null));
 			}
