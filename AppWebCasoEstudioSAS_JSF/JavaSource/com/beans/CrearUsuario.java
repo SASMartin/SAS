@@ -51,7 +51,7 @@ public class CrearUsuario {
 			usuario=null;
 		}catch(Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar crear un Usuario"));			
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage()));			
 		}
 		
 	}

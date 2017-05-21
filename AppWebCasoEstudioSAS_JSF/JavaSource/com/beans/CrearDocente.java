@@ -61,7 +61,7 @@ public class CrearDocente {
 			docente=null;
 		} catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar crear un Docente"));			
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage()));			
 		}
 		
 	}

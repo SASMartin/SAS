@@ -10,13 +10,13 @@ import com.dto.UsuarioDTO;
 @Remote
 public interface ServiciosFacadeRemote {
 	
-	public void crearEstudiante (EstudianteDTO est);
-	public void crearDocente (DocenteDTO doc);
+	public void crearEstudiante (EstudianteDTO est) throws Exception;
+	public void crearDocente (DocenteDTO doc) throws Exception;
 	public List<DocenteDTO> obtenerDocentes();
 	public List<EstudianteDTO> obtenerEstudiantes();
 	public List<PaisesDTO> obtenerPaises();
 	public PaisesDTO obtenerPais(String nombre);
 	
-	public void crearUsuario (UsuarioDTO usu);
+	public void crearUsuario (UsuarioDTO usu) throws Exception;
 	public List<UsuarioDTO> otenerUsuarios();
 }

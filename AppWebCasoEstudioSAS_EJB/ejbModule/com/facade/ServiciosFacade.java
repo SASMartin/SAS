@@ -38,7 +38,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
         // TODO Auto-generated constructor stub
     }
     
-    public void crearEstudiante (EstudianteDTO est){
+    public void crearEstudiante (EstudianteDTO est) throws Exception{
     	try{
     		PaisesDTO dtoPais = obtenerPais(est.getPais().getNombre());
     		Paises p = new Paises(dtoPais.getId(), dtoPais.getNombre());
@@ -49,12 +49,16 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
 	    	e.setID(codigo.longValue());
 	    	em.persist(e);
+	    	em.flush();
     	}catch(PersistenceException ex){
-    		System.out.println("Error SQL: " + ex.getMessage());
+    		throw new Exception("El Estudiante ya existe en el sistema");
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		throw new Exception("Ha ocurrido un error al intentar crear un Estudiante");
     	}
     }
     
-    public void crearDocente (DocenteDTO doc){
+    public void crearDocente (DocenteDTO doc) throws Exception{
     	try{    	    	
     		PaisesDTO dtoPais = obtenerPais(doc.getPais().getNombre());
     		Paises p = new Paises(dtoPais.getId(), dtoPais.getNombre());	
@@ -65,8 +69,12 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
 	    	d.setID(codigo.longValue());
 	    	em.persist(d);
+	    	em.flush();
     	}catch(PersistenceException ex){
-    		System.out.println("Error SQL: " + ex.getMessage());
+    		throw new Exception("El Docente ya existe en el sistema");
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		throw new Exception("Ha ocurrido un error al intentar crear un Docente");
     	}
     }
     
@@ -135,7 +143,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	 }
     
     //Servicios de usuario implementados 4 semestre 
-    public void crearUsuario (UsuarioDTO usu){
+    public void crearUsuario (UsuarioDTO usu) throws Exception{
     	try{
     		//Encriptacion 
     		String plainPass = usu.getContrasenia(); 
@@ -149,10 +157,16 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
 	    	u.setID_USUARIO(codigo.longValue());
 	    	em.persist(u); 		
-    	}catch(PersistenceException | NoSuchAlgorithmException ex){
-    		System.out.println("Error SQL: " + ex.getMessage());
-    	}
-    	
+	    	em.flush();
+    	}catch(PersistenceException ex){
+    		throw new Exception("El Usuario ya existe en el sistema");
+    	}catch(NoSuchAlgorithmException ex){
+    		ex.printStackTrace();
+    		throw new Exception("Ha ocurrido un error al intentar crear un Usuario");
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		throw new Exception("Ha ocurrido un error al intentar crear un Usuario");
+    	}    	
     }
     
     @Override
