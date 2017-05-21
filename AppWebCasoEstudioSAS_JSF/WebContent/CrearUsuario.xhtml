@@ -19,10 +19,10 @@
 		        		<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 						<h:panelGrid  id="grid" columns="3">
 						
-							<p:outputLabel for="Usuario" value="Usuario:" />
-							<p:inputText id= "Usuario" values="#{crearUsuario.usuario.nomUsuario}" required="true">
+							<p:outputLabel for="NomUsuario" value="Usuario:" />
+							<p:inputText id= "NomUsuario" value="#{crearUsuario.usuario.nomUsuario}" required="true">
 							</p:inputText>
-							<p:message for="Usuario" display="tooltip" />
+							<p:message for="NomUsuario" display="tooltip" />
 						
 							<p:outputLabel for="Password" value="Password:"/>
 							<p:password id="Password" value = "#{crearUsuario.usuario.contrasenia}" required="true">

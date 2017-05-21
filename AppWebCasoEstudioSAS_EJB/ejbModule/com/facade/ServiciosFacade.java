@@ -148,7 +148,6 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     		Query q = em.createNativeQuery("select SEQ_ID_USUARIO.nextval from dual");
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
 	    	u.setID_USUARIO(codigo.longValue());
-	    	u.setUsuario("HARCODE");//TODO: SACAR HARCODE!!!
 	    	em.persist(u); 		
     	}catch(PersistenceException | NoSuchAlgorithmException ex){
     		System.out.println("Error SQL: " + ex.getMessage());
