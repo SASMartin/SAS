@@ -20,7 +20,8 @@
 						<h:panelGrid  id="grid" columns="3">
 						
 							<p:outputLabel for="NomUsuario" value="Usuario:" />
-							<p:inputText id= "NomUsuario" value="#{crearUsuario.usuario.nomUsuario}" required="true">
+							<p:inputText id= "NomUsuario" value="#{crearUsuario.usuario.nomUsuario}" validatorMessage="El nombre solo puede contener letras y/o números" required="true">
+								<f:validateRegex pattern="[A-Za-z0-9]+" />
 							</p:inputText>
 							<p:message for="NomUsuario" display="tooltip" />
 						
@@ -34,10 +35,9 @@
 							</p:inputText>
 							<p:message for="NomCompleto" display="tooltip" />
 						
-							<p:growl id="message"  showDetail="true"/>
-								<p:commandButton value="Crear" action = "#{crearUsuario.crear}" update="grid" /> 
-								<p:commandButton value="Cancelar" action="#{crearUsuario.cancelar()}" immediate="true" update="message">
-									<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
+							<p:commandButton value="Crear" action = "#{crearUsuario.crear}" update="grid" /> 
+							<p:commandButton value="Cancelar" action="#{crearUsuario.cancelar()}" immediate="true">
+								<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
 							</p:commandButton>
 							<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 								<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>

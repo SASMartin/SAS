@@ -27,7 +27,7 @@
 							<p:message for="Nombre" display="tooltip" />
 							
 							<p:outputLabel for="Apellido" value="Apellido:"/>
-							<p:inputText id="Apellido" value="#{crearDocente.docente.apellido}" validatorMessage="El apellido solo puede contener letras" required="true">
+							<p:inputText id="Apellido" value="#{crearDocente.docente.apellido}" validatorMessage="El apellido solo puede contener letras" requiredMessage="" required="true">
 								<f:validateRegex pattern="[A-Za-z]+" />
 							</p:inputText>
 							<p:message for="Apellido" display="tooltip" />
@@ -75,11 +75,10 @@
 							</p:selectOneMenu>
 							<p:message for="Pais" display="tooltip" />
 							
-							<p:growl id="message"  showDetail="true"/>
-								<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
-								<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" update="message">
-									<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
-								</p:commandButton>
+							<p:commandButton value="Crear" action = "#{crearDocente.crear}" update="grid" /> 
+							<p:commandButton value="Cancelar" action="#{crearDocente.cancelar()}" immediate="true" >
+								<p:confirm header="Desea Cancelar " message="Estas Seguro ?" icon="ui-icon-alert" />
+							</p:commandButton>
 							<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 								<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
 								<p:commandButton  value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
