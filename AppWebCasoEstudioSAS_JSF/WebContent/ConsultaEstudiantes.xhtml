@@ -16,7 +16,7 @@
           		<p:fieldset legend="Consulta Estudiante">   
 					<h:form id="form">
 						<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-						<p:dataTable id="tabla" var = "emp" value = "#{listarEstudiantes.estudiantes}" >
+						<p:dataTable id="tabla" var="emp" value="#{listarEstudiantes.estudiantes}" emptyMessage="No se encontraron Estudiantes" >
 					
 							<p:column headerText="Nombre" colspan="2">
 								<h:outputText value="#{emp.nombre} #{emp.apellido}" />
