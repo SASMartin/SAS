@@ -22,13 +22,13 @@
 					
 						<p:outputLabel for="Nombre" value="Nombre:" />
 						<p:inputText id="Nombre" value="#{crearEstudiante.estudiante.nombre}" validatorMessage="El nombre solo puede contener letras" required="true">
-							<f:validateRegex pattern="[A-Za-z]+" />
+							<f:validateRegex pattern="[A-Za-z ]+" />
 						</p:inputText>
 						<p:message for="Nombre" display="tooltip" />
 						
 						<p:outputLabel for="Apellido" value="Apellido:"/>
 						<p:inputText id="Apellido" value="#{crearEstudiante.estudiante.apellido}" validatorMessage="El apellido solo puede contener letras" required="true">
-							<f:validateRegex pattern="[A-Za-z]+" />
+							<f:validateRegex pattern="[A-Za-z ]+" />
 						</p:inputText>
 						<p:message for="Apellido" display="tooltip" />
 						
