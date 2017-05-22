@@ -40,6 +40,10 @@ public class ListarDocentes {
 		this.docentes = docentes;
 	}
 	
+	public String cancelar(){
+		return "index";
+	}
+	
 	@PostConstruct
 	public void inicializar () throws SQLException{
 		try {

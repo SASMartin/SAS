@@ -43,6 +43,10 @@ public class ListarUsuario {
 		this.usuario = usuario;
 	}
 	
+	public String cancelar(){
+		return "index";
+	}
+	
 	@PostConstruct
 	public void inicializar () throws SQLException{
 		try{
