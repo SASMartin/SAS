@@ -51,7 +51,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	em.persist(e);
 	    	em.flush();
     	}catch(PersistenceException ex){
-    		throw new Exception("El Estudiante ya existe en el sistema");
+    		throw new Exception("El documento ya está registrado en el sistema");
     	}catch(Exception ex){
     		ex.printStackTrace();
     		throw new Exception("Ha ocurrido un error al intentar crear un Estudiante");
@@ -71,7 +71,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	em.persist(d);
 	    	em.flush();
     	}catch(PersistenceException ex){
-    		throw new Exception("El Docente ya existe en el sistema");
+    		throw new Exception("El documento ya está registrado en el sistema");
     	}catch(Exception ex){
     		ex.printStackTrace();
     		throw new Exception("Ha ocurrido un error al intentar crear un Docente");
