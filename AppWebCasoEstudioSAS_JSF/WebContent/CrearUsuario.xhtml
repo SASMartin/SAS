@@ -20,7 +20,7 @@
 						<h:panelGrid  id="grid" columns="3">
 						
 							<p:outputLabel for="NomUsuario" value="Usuario:" />
-							<p:inputText id= "NomUsuario" value="#{crearUsuario.usuario.nomUsuario}" validatorMessage="El nombre solo puede contener letras y/o números" required="true">
+							<p:inputText id= "NomUsuario" value="#{crearUsuario.usuario.nomUsuario}" validatorMessage="El usuario solo puede contener letras y/o números" required="true">
 								<f:validateRegex pattern="[A-Za-z0-9]+" />
 							</p:inputText>
 							<p:message for="NomUsuario" display="tooltip" />
