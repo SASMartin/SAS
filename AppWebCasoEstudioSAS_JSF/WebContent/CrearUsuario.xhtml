@@ -31,7 +31,8 @@
 							<p:message for="Password" display="tooltip" />
 						
 							<p:outputLabel for="NomCompleto" value="Nombre Completo :" />
-							<p:inputText id = "NomCompleto" value = "#{crearUsuario.usuario.nomCompleto}" required="true">
+							<p:inputText id = "NomCompleto" value = "#{crearUsuario.usuario.nomCompleto}" validatorMessage="El nombre solo puede contener letras" required="true">
+								<f:validateRegex pattern="[A-Za-z ]+" />
 							</p:inputText>
 							<p:message for="NomCompleto" display="tooltip" />
 						
