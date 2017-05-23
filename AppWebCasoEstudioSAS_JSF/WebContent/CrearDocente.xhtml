@@ -33,8 +33,7 @@
 							<p:message for="Apellido" display="tooltip" />
 							
 							<p:outputLabel for="Documento" value="Documento:" />
-							<p:inputText id="Documento" value="#{crearDocente.docente.documento}" required="true" validator="#{listarDocentes.validate}" validatorMessage="El documento solo puede contener dígitos">
-								<f:validateRegex pattern="([0-9]+)?" />
+							<p:inputText id="Documento" value="#{crearDocente.docente.documento}" required="true" validator="#{listarDocentes.validate}" >
 							</p:inputText>
 							<p:message for="Documento" display="tooltip" />
 							

@@ -58,12 +58,18 @@ public class ListarDocentes {
 	public void validate(FacesContext arg0 , UIComponent arg1 , Object arg2) throws ValidationException{
 		List<DocenteDTO> lDocente = new ArrayList<>();
 		String documento ;
-		lDocente = serviciosFacade.obtenerDocentes();
-		for(DocenteDTO docentes : lDocente){
-			documento= docentes.getDocumento();
-			if(((String)arg2).equals(documento)){				
-				throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento ya fue ingresado al sistema !! ", null));
+		String regex = "[0-9]*";
+		
+		if(((String)arg2).matches(regex)){
+			lDocente = serviciosFacade.obtenerDocentes();
+			for(DocenteDTO docentes : lDocente){
+				documento= docentes.getDocumento();
+				if(((String)arg2).equals(documento)){				
+					throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento ya fue ingresado al sistema !! ", null));
+				}
 			}
+		}else{
+			throw new ValidatorException( new FacesMessage(FacesMessage.SEVERITY_FATAL ,"El documento solo debe contener dígitos", null));
 		}
 	}
 		
