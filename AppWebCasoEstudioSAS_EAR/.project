@@ -5,6 +5,7 @@
 	<projects>
 		<project>AppWebCasoEstudioSAS_JSF</project>
 		<project>APPWebCasoEstudioSAS_EJB</project>
+		<project>AppWebCasoEstudioSAS_WS</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

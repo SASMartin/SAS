@@ -51,7 +51,7 @@ public class ListarUsuario {
 	public void inicializar () throws SQLException{
 		try{
 			if(usuario==null)
-				usuario = serviciosFacade.otenerUsuarios();
+				usuario = serviciosFacade.obtenerUsuarios();
 		}catch (Exception ex){
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Ha ocurrido un error al intentar listar los Usuarios"));
@@ -61,7 +61,7 @@ public class ListarUsuario {
 	public void validate(FacesContext arg0 , UIComponent arg1 , Object arg2) throws ValidationException{
 		List<UsuarioDTO> lusuario = new ArrayList<>();
 		String usuarioNom ;
-		lusuario = serviciosFacade.otenerUsuarios();
+		lusuario = serviciosFacade.obtenerUsuarios();
 		for(UsuarioDTO usuario: lusuario){
 			usuarioNom= usuario.getNomUsuario();
 			if(((String)arg2).equals(usuarioNom)){				

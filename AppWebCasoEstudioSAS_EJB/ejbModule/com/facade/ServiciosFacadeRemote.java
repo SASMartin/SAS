@@ -18,5 +18,5 @@ public interface ServiciosFacadeRemote {
 	public PaisesDTO obtenerPais(String nombre);
 	
 	public void crearUsuario (UsuarioDTO usu) throws Exception;
-	public List<UsuarioDTO> otenerUsuarios();
+	public List<UsuarioDTO> obtenerUsuarios();
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  	<display-name>AppWebCasoEstudioSAS_WS</display-name>
+  	<!-- Auto scan REST service -->
+	<context-param>
+		<param-name>resteasy.scan</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<!-- this need same with resteasy servlet url-pattern -->
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/sas</param-value>
+	</context-param>
+	<listener>
+  		<listener-class>
+			org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+		</listener-class>
+	</listener>
+  	<servlet>
+    	<description>API Instituto SAS+</description>
+    	<servlet-name>SAS</servlet-name>
+    	<servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+		</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>SAS</servlet-name>
+    	<url-pattern>/sas/*</url-pattern>
+  	</servlet-mapping>
+</web-app>

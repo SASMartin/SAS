@@ -88,7 +88,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	
 			for(Docentes doc:query.getResultList()){
 				DocenteDTO docDTO = new DocenteDTO(doc.getNombre(),doc.getTelefono(), doc.getDocumento(),doc.getApellido(),doc.getFechaNac(),
-						doc.getCorreo(),new PaisesDTO(doc.getPais().getID_PAIS(), doc.getPais().getNOMBRE()),doc.getFechaEgreso(),doc.getFechaIngreso());
+						doc.getCorreo(),new PaisesDTO(doc.getPais().getID_PAIS(), doc.getPais().getNOMBRE()),doc.getID(),doc.getFechaEgreso(),doc.getFechaIngreso());
 					
 				docenteDTO.add(docDTO);
 			}			
@@ -107,7 +107,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	   		
 	   		for(Estudiantes est:query.getResultList()){
 	   			EstudianteDTO estDTO = new EstudianteDTO(est.getNombre(),est.getTelefono(), est.getDocumento(),est.getApellido(),est.getFechaNac(),
-	   					est.getCorreo(),new PaisesDTO(est.getPais().getID_PAIS(), est.getPais().getNOMBRE()), est.getFechaPrimerMat());
+	   					est.getCorreo(),new PaisesDTO(est.getPais().getID_PAIS(), est.getPais().getNOMBRE()), est.getID(), est.getFechaPrimerMat());
 	   				
 	   			estudianteDTO.add(estDTO);
 	   		}
@@ -170,13 +170,13 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     }
     
     @Override
-    public List<UsuarioDTO> otenerUsuarios(){
+    public List<UsuarioDTO> obtenerUsuarios(){
     	List<UsuarioDTO> usuarioDTO = null;
     	try{
     		usuarioDTO = new ArrayList<UsuarioDTO>();
     		TypedQuery<Usuarios> query = em.createQuery("FROM Usuarios",Usuarios.class);
 			for(Usuarios usu:query.getResultList()){
-				UsuarioDTO usuDTO = new UsuarioDTO(usu.getUsuario(),usu.getContrasenia(), usu.getNombre());
+				UsuarioDTO usuDTO = new UsuarioDTO(usu.getID_USUARIO(),usu.getUsuario(),usu.getContrasenia(), usu.getNombre());
 			usuarioDTO.add(usuDTO);
 			}
     	}catch(PersistenceException ex){
