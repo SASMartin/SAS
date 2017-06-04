@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USUARIOS")
-public class Usuarios implements Serializable {
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -21,7 +21,7 @@ public class Usuarios implements Serializable {
 	private String contrasenia ;
 	private String nombre ;
 
-	public Usuarios(String nOMUSUARIO, String cONTRASENIA, String nOMBRE) {
+	public Usuario(String nOMUSUARIO, String cONTRASENIA, String nOMBRE) {
 		super();
 		usuario = nOMUSUARIO;
 		contrasenia = cONTRASENIA;
@@ -36,7 +36,7 @@ public class Usuarios implements Serializable {
 		ID_USUARIO = iD_USUARIO;
 	}
 	
-	public Usuarios() {
+	public Usuario() {
 		super();
 	}
 

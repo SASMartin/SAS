@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ESTUDIANTES")
 @PrimaryKeyJoinColumn(referencedColumnName = "ID_PERSONA",name = "ID_PERSONA")
-public class Estudiantes extends Personas implements Serializable {
+public class Estudiante extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "ID_ESTUDIANTE", unique = true)
@@ -24,13 +24,13 @@ public class Estudiantes extends Personas implements Serializable {
 	@Column(name="FEC_PRIMER_MATR")
 	private Date fechaPrimerMat;
 	
-	public Estudiantes(String nOMBRE, String aPELLIDO, String dOCUMENTO, String tELEFONO, String cORREO, Paises pais,
+	public Estudiante(String nOMBRE, String aPELLIDO, String dOCUMENTO, String tELEFONO, String cORREO, Pais pais,
 			Date fechaNac, Date fechaPrimerMat) {
 		super(nOMBRE, aPELLIDO, dOCUMENTO, tELEFONO, cORREO, pais, fechaNac);
 		this.fechaPrimerMat = fechaPrimerMat;
 	}
 
-	public Estudiantes() {
+	public Estudiante() {
 		super();
 	}
 

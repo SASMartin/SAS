@@ -2,17 +2,17 @@ package com.dto;
 
 import java.io.Serializable;
 
-public class PaisesDTO implements Serializable{
+public class PaisDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id ;
 	private String nombre ;
 	
-	public PaisesDTO() {
+	public PaisDTO() {
 		super();
 	}
 	
-	public PaisesDTO(Long id, String nombre) {
+	public PaisDTO(Long id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 	}

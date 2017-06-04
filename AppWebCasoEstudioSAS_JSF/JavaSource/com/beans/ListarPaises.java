@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import com.dto.PaisesDTO;
+import com.dto.PaisDTO;
 import com.facade.ServiciosFacade;
 
 @ManagedBean
@@ -21,13 +21,13 @@ public class ListarPaises {
 	@EJB
 	private ServiciosFacade servicioPais;
 	private List<SelectItem> paisSeleccionado ;
-	private List<PaisesDTO> paises;
+	private List<PaisDTO> paises;
 	
 	
-	public List<PaisesDTO> getPaises() {
+	public List<PaisDTO> getPaises() {
 		return paises;
 	}
-	public void setPaises(List<PaisesDTO> paises) {
+	public void setPaises(List<PaisDTO> paises) {
 		this.paises = paises;
 	}
 	public ServiciosFacade getServicioPais() {

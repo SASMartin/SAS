@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PAISES")
-public class Paises implements Serializable {
+public class Pais implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -21,18 +21,18 @@ public class Paises implements Serializable {
 	@Column(nullable=false ,unique = true)
 	private String NOMBRE ;
 	
-	public Paises() {
+	public Pais() {
 		super();
 	}
 
-	public Paises(String nOMBRE) {
+	public Pais(String nOMBRE) {
 		super();
 		NOMBRE = nOMBRE;
 	}
 	
 	
 
-	public Paises(Long iD_PAIS, String nOMBRE) {
+	public Pais(Long iD_PAIS, String nOMBRE) {
 		super();
 		ID_PAIS = iD_PAIS;
 		NOMBRE = nOMBRE;

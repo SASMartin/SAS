@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "PERSONAS")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Personas implements Serializable {
+public class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	   @Id
@@ -39,16 +39,16 @@ public class Personas implements Serializable {
 	   
 	   @ManyToOne(fetch=FetchType.LAZY)
 	   @JoinColumn(name = "ID_PAIS",nullable=true)
-	   private Paises pais;
+	   private Pais pais;
 	   
 	   @Column(name="FECHA_NAC")
 	   private Date fechaNac;
 	   
-	public Personas() {
+	public Persona() {
 		super();
 	}
 
-	public Personas(String nombre, String apellido, String documento, String telefono, String correo, Paises pais,
+	public Persona(String nombre, String apellido, String documento, String telefono, String correo, Pais pais,
 			Date fechaNac) {
 		super();
 		this.nombre = nombre;
@@ -108,11 +108,11 @@ public class Personas implements Serializable {
 		this.correo = correo;
 	}
 
-	public Paises getPais() {
+	public Pais getPais() {
 		return pais;
 	}
 
-	public void setPais(Paises pais) {
+	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
 

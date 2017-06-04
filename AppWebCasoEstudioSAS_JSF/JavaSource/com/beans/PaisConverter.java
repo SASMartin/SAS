@@ -11,16 +11,16 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
-import com.dto.PaisesDTO;
+import com.dto.PaisDTO;
 import com.facade.ServiciosFacade;
 
-@FacesConverter(value="paisConverter", forClass=PaisesDTO.class)
+@FacesConverter(value="paisConverter", forClass=PaisDTO.class)
 public class PaisConverter implements Converter{
 	
 	@EJB
 	public ServiciosFacade serviciosPais;
-	private List<PaisesDTO> paises;
-	private PaisesDTO pais;
+	private List<PaisDTO> paises;
+	private PaisDTO pais;
 
 	public ServiciosFacade getServiciosPais() {
 		return serviciosPais;
@@ -30,25 +30,25 @@ public class PaisConverter implements Converter{
 		this.serviciosPais = serviciosPais;
 	}
 
-	public List<PaisesDTO> getPaises() {
+	public List<PaisDTO> getPaises() {
 		return paises;
 	}
 
-	public void setPaises(List<PaisesDTO> paises) {
+	public void setPaises(List<PaisDTO> paises) {
 		this.paises = paises;
 	}
 
-	public PaisesDTO getPais() {
+	public PaisDTO getPais() {
 		return pais;
 	}
 
-	public void setPais(PaisesDTO pais) {
+	public void setPais(PaisDTO pais) {
 		this.pais = pais;
 	}
 	
 	public PaisConverter(){
 		if(pais==null)
-			pais = new PaisesDTO() ;
+			pais = new PaisDTO() ;
 	}
 
 	@PostConstruct
@@ -77,7 +77,7 @@ public class PaisConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext context , UIComponent component,Object value) throws ConverterException{
 		if(value != null){
-			PaisesDTO pais = new PaisesDTO();
+			PaisDTO pais = new PaisDTO();
 			return pais.getNombre();
 		}
 		return null;

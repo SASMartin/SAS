@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
-import com.dto.PaisesDTO;
+import com.dto.PaisDTO;
 import com.dto.UsuarioDTO;
 import com.resources.ejbean.EJBInterface;
 
@@ -27,7 +27,7 @@ public class ApplicationImpl {
 		String jsonResponse = "";
 		try{
 			EJBInterface ejbInterface = EJBInterface.getInstance();
-			List<PaisesDTO> listaPaises = ejbInterface.getPaisesEJB();
+			List<PaisDTO> listaPaises = ejbInterface.getPaisesEJB();
 			
 			//Parseo de Objeto a JSON
 			ObjectMapper mapper = new ObjectMapper();

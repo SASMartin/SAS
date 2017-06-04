@@ -12,14 +12,14 @@ public class PersonaDTO implements Serializable {
 	private String apellido;
 	private Date fechaNac ;
 	private String correo ;
-	private PaisesDTO pais ;
+	private PaisDTO pais ;
 	
 	public PersonaDTO() {
 		super();
 	}
 	
 	public PersonaDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac, String correo,
-			PaisesDTO paisDTO) {
+			PaisDTO paisDTO) {
 		super();
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -72,10 +72,10 @@ public class PersonaDTO implements Serializable {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public PaisesDTO getPais() {
+	public PaisDTO getPais() {
 		return pais;
 	}
-	public void setPais(PaisesDTO pais) {
+	public void setPais(PaisDTO pais) {
 		this.pais = pais;
 	}
 	public static long getSerialversionuid() {

@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import com.dto.EstudianteDTO;
-import com.dto.PaisesDTO;
+import com.dto.PaisDTO;
 import com.facade.ServiciosFacade;
 
 @ManagedBean
@@ -45,7 +45,7 @@ public class CrearEstudiante {
 	public EstudianteDTO getEstudiante() {
 		if(estudiante == null){
 			estudiante = new EstudianteDTO();		
-			estudiante.setPais(new PaisesDTO());
+			estudiante.setPais(new PaisDTO());
 		}
 		return estudiante;
 	}
@@ -73,10 +73,10 @@ public class CrearEstudiante {
 	public List<SelectItem> getPaisSeleccionado() throws SQLException {
 		if(paisSeleccionado==null){			
 			paisSeleccionado = new ArrayList<SelectItem>();		
-			List<PaisesDTO> paises = serviciosFacade.obtenerPaises();		
+			List<PaisDTO> paises = serviciosFacade.obtenerPaises();		
 			if(paises != null && !paises.isEmpty()){
 				SelectItem item ;
-				for(PaisesDTO paisesLista  : paises) {					
+				for(PaisDTO paisesLista  : paises) {					
 					item = new SelectItem(paisesLista,paisesLista.getNombre());					
 					paisSeleccionado.add(item);
 				}
@@ -89,7 +89,7 @@ public class CrearEstudiante {
 	public void init(){
 		if(estudiante==null){
 			estudiante = new EstudianteDTO();
-			estudiante.setPais(new PaisesDTO());
+			estudiante.setPais(new PaisDTO());
 		}
 	}
 	

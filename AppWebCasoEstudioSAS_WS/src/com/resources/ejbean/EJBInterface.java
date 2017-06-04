@@ -7,7 +7,7 @@ import javax.naming.NamingException;
 
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
-import com.dto.PaisesDTO;
+import com.dto.PaisDTO;
 import com.dto.UsuarioDTO;
 import com.facade.ServiciosFacade;
 
@@ -25,7 +25,7 @@ public class EJBInterface {
 		return ejbInterface;
 	}
 	
-	public List<PaisesDTO> getPaisesEJB(){	
+	public List<PaisDTO> getPaisesEJB(){	
 		return serviciosFacade.obtenerPaises();
 	}
 	

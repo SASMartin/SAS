@@ -14,14 +14,14 @@ public class DocenteDTO extends PersonaDTO implements Serializable {
 	}
 
 	public DocenteDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac, String correo,
-			PaisesDTO paisDTO, Date fechaEgreso, Date fechaIngreso) {
+			PaisDTO paisDTO, Date fechaEgreso, Date fechaIngreso) {
 		super(nombre, telefono, documento, apellido, fechaNac, correo, paisDTO);
 		this.fechaEgreso = fechaEgreso;
 		this.fechaIngreso = fechaIngreso;
 	}
 
 	public DocenteDTO(String nombre, String telefono, String documento, String apellido, Date fechaNac, String correo,
-			PaisesDTO paisDTO, Long id, Date fechaEgreso, Date fechaIngreso) {
+			PaisDTO paisDTO, Long id, Date fechaEgreso, Date fechaIngreso) {
 		super(nombre, telefono, documento, apellido, fechaNac, correo, paisDTO);
 		this.id = id;
 		this.fechaEgreso = fechaEgreso;
