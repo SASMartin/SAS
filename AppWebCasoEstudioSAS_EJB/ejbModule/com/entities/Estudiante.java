@@ -19,7 +19,7 @@ public class Estudiante extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "ID_ESTUDIANTE", unique = true)
-	private Long ID;
+	private Long id;
 	
 	@Column(name="FEC_PRIMER_MATR")
 	private Date fechaPrimerMat;
@@ -34,12 +34,12 @@ public class Estudiante extends Persona implements Serializable {
 		super();
 	}
 
-	public Long getID() {
-		return ID;
+	public Long getId() {
+		return id;
 	}
 
-	public void setID(Long iD) {
-		ID = iD;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Date getFechaPrimerMat() {

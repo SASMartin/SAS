@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
 	@SequenceGenerator(name="SEQ_ID_USUARIO",sequenceName="SEQ_ID_USUARIO",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ID_USUARIO")
 	@Column(name="ID_USUARIO")
-	private Long ID_USUARIO;
+	private Long id_usuario;
 	private String usuario ;
 	private String contrasenia ;
 	private String nombre ;
@@ -28,12 +28,12 @@ public class Usuario implements Serializable {
 		nombre = nOMBRE;
 	}
 	
-	public Long getID_USUARIO() {
-		return ID_USUARIO;
+	public Long getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setID_USUARIO(Long iD_USUARIO) {
-		ID_USUARIO = iD_USUARIO;
+	public void setID_USUARIO(Long id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 	
 	public Usuario() {

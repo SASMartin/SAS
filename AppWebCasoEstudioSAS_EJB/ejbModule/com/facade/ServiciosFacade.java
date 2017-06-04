@@ -47,7 +47,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	
 	    	Query q = em.createNativeQuery("select SEQ_ID_ESTUDIANTE.nextval from dual");
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
-	    	e.setID(codigo.longValue());
+	    	e.setId(codigo.longValue());
 	    	
 	    	em.persist(e);
 	    	em.flush();
@@ -69,7 +69,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	
 	    	Query q = em.createNativeQuery("select SEQ_ID_DOCENTE.nextval from dual");
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
-	    	d.setID(codigo.longValue());
+	    	d.setId(codigo.longValue());
 	    	
 	    	em.persist(d);
 	    	em.flush();
@@ -91,7 +91,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	
 			for(Docente doc:query.getResultList()){
 				DocenteDTO docDTO = new DocenteDTO(doc.getNombre(),doc.getTelefono(), doc.getDocumento(),doc.getApellido(),doc.getFechaNac(),
-						doc.getCorreo(),new PaisDTO(doc.getPais().getID_PAIS(), doc.getPais().getNOMBRE()),doc.getID(),doc.getFechaEgreso(),doc.getFechaIngreso());
+						doc.getCorreo(),new PaisDTO(doc.getPais().getId_pais(), doc.getPais().getNombre()),doc.getID(),doc.getFechaEgreso(),doc.getFechaIngreso());
 					
 				docenteDTO.add(docDTO);
 			}			
@@ -110,7 +110,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	   		
 	   		for(Estudiante est:query.getResultList()){
 	   			EstudianteDTO estDTO = new EstudianteDTO(est.getNombre(),est.getTelefono(), est.getDocumento(),est.getApellido(),est.getFechaNac(),
-	   					est.getCorreo(),new PaisDTO(est.getPais().getID_PAIS(), est.getPais().getNOMBRE()), est.getID(), est.getFechaPrimerMat());
+	   					est.getCorreo(),new PaisDTO(est.getPais().getId_pais(), est.getPais().getNombre()), est.getId(), est.getFechaPrimerMat());
 	   				
 	   			estudianteDTO.add(estDTO);
 	   		}
@@ -125,10 +125,10 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     	List<PaisDTO> paisDTO = null;
     	try{
     		paisDTO = new ArrayList<PaisDTO>();
-	    	TypedQuery<Pais> query = em.createQuery("FROM Pais ORDER BY DECODE(NOMBRE, 'Uruguay', 1)",Pais.class);	   		
+	    	TypedQuery<Pais> query = em.createQuery("FROM Pais ORDER BY DECODE(nombre, 'Uruguay', 1)",Pais.class);	   		
 	   		
 	   		for(Pais paises:query.getResultList()){
-	   			PaisDTO estDTO = new PaisDTO(paises.getID_PAIS(), paises.getNOMBRE());	   				
+	   			PaisDTO estDTO = new PaisDTO(paises.getId_pais(), paises.getNombre());	   				
 	   			paisDTO.add(estDTO);
 	   		}
    		}catch(PersistenceException ex){
@@ -139,7 +139,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     
     @Override
     public PaisDTO obtenerPais(String nombre){    		
-    	Query query = em.createQuery("select new com.dto.PaisDTO( P.ID_PAIS , P.NOMBRE) from Pais p where p.NOMBRE like :nombre " );
+    	Query query = em.createQuery("select new com.dto.PaisDTO( p.id_pais , p.nombre) from Pais p where p.nombre like :nombre " );
 		query.setParameter("nombre", nombre);
 		PaisDTO pais = (PaisDTO) query.getSingleResult() ;		 
 		return pais ;
@@ -176,7 +176,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     		usuarioDTO = new ArrayList<UsuarioDTO>();
     		TypedQuery<Usuario> query = em.createQuery("FROM Usuario",Usuario.class);
 			for(Usuario usu:query.getResultList()){
-				UsuarioDTO usuDTO = new UsuarioDTO(usu.getID_USUARIO(),usu.getUsuario(), null, usu.getNombre());
+				UsuarioDTO usuDTO = new UsuarioDTO(usu.getId_usuario(),usu.getUsuario(), null, usu.getNombre());
 			usuarioDTO.add(usuDTO);
 			}
     	}catch(PersistenceException ex){

@@ -20,7 +20,7 @@ public class Docente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "ID_DOCENTE", unique = true)
-	private Long ID;
+	private Long id;
 	
 	@Column(name = "FEC_INGRESO" )
 	private Date fechaIngreso;
@@ -40,11 +40,11 @@ public class Docente extends Persona implements Serializable {
 	}
 
 	public Long getID() {
-		return ID;
+		return id;
 	}
 
-	public void setID(Long iD) {
-		ID = iD;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Date getFechaIngreso() {

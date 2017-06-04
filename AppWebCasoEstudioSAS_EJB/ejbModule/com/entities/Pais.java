@@ -16,42 +16,40 @@ public class Pais implements Serializable {
 	@SequenceGenerator(name="SEQ_ID_PAIS",sequenceName="SEQ_ID_PAIS",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ID_PAIS")
 	@Column(name="ID_PAIS")
-	private Long ID_PAIS;
+	private Long id_pais;
 	
 	@Column(nullable=false ,unique = true)
-	private String NOMBRE ;
+	private String nombre ;
 	
 	public Pais() {
 		super();
 	}
 
-	public Pais(String nOMBRE) {
+	public Pais(String nombre) {
 		super();
-		NOMBRE = nOMBRE;
+		this.nombre = nombre;
 	}
 	
-	
-
-	public Pais(Long iD_PAIS, String nOMBRE) {
+	public Pais(Long id_pais, String nombre) {
 		super();
-		ID_PAIS = iD_PAIS;
-		NOMBRE = nOMBRE;
+		this.id_pais = id_pais;
+		this.nombre = nombre;
 	}
 
-	public Long getID_PAIS() {
-		return ID_PAIS;
+	public Long getId_pais() {
+		return id_pais;
 	}
 
-	public void setID_PAIS(Long iD_PAIS) {
-		ID_PAIS = iD_PAIS;
+	public void setId_pais(Long id_pais) {
+		this.id_pais = id_pais;
 	}
 
-	public String getNOMBRE() {
-		return NOMBRE;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setNOMBRE(String nOMBRE) {
-		NOMBRE = nOMBRE;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public static long getSerialversionuid() {
