@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.dto.DocenteDTO;
 import com.dto.EstudianteDTO;
@@ -128,7 +129,6 @@ public class ApplicationImpl {
 	 * @return Response: respuesta Http
 	 */
 	public static Response createDocenteImp(String jsonRequest) {
-		String jsonResponse = "";
 		try{
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			
@@ -138,7 +138,7 @@ public class ApplicationImpl {
 			
 			ejbInterface.createDocente(docente);
 			
-			return Response.ok(jsonResponse, MediaType.APPLICATION_JSON).build();
+			return Response.status(Status.CREATED).entity("Docente creado exitosamente").build();
 		}catch(Exception ex){
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
 		}
@@ -151,7 +151,6 @@ public class ApplicationImpl {
 	 * @return Response: respuesta Http
 	 */
 	public static Response createEstudianteImpl(String jsonRequest) {
-		String jsonResponse = "";
 		try{
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			
@@ -161,7 +160,7 @@ public class ApplicationImpl {
 			
 			ejbInterface.createEstudiante(estudiante);
 			
-			return Response.ok(jsonResponse, MediaType.APPLICATION_JSON).build();
+			return Response.status(Status.CREATED).entity("Estudiante creado exitosamente").build();
 		}catch(Exception ex){
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
 		}
@@ -174,7 +173,6 @@ public class ApplicationImpl {
 	 * @return Response: respuesta Http
 	 */
 	public static Response createUserImpl(String jsonRequest) {
-		String jsonResponse = "";
 		try{
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			
@@ -184,7 +182,7 @@ public class ApplicationImpl {
 			
 			ejbInterface.createUser(usuario);
 			
-			return Response.ok(jsonResponse, MediaType.APPLICATION_JSON).build();
+			return Response.status(Status.CREATED).entity("Usuario creado exitosamente").build();
 		}catch(Exception ex){
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
 		}
