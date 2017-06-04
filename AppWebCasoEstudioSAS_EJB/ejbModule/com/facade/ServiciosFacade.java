@@ -176,7 +176,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     		usuarioDTO = new ArrayList<UsuarioDTO>();
     		TypedQuery<Usuarios> query = em.createQuery("FROM Usuarios",Usuarios.class);
 			for(Usuarios usu:query.getResultList()){
-				UsuarioDTO usuDTO = new UsuarioDTO(usu.getID_USUARIO(),usu.getUsuario(),usu.getContrasenia(), usu.getNombre());
+				UsuarioDTO usuDTO = new UsuarioDTO(usu.getID_USUARIO(),usu.getUsuario(), null, usu.getNombre());
 			usuarioDTO.add(usuDTO);
 			}
     	}catch(PersistenceException ex){
