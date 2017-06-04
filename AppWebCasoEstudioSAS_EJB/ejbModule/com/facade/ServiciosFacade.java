@@ -48,6 +48,7 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	Query q = em.createNativeQuery("select SEQ_ID_ESTUDIANTE.nextval from dual");
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
 	    	e.setID(codigo.longValue());
+	    	
 	    	em.persist(e);
 	    	em.flush();
     	}catch(PersistenceException ex){
@@ -65,9 +66,11 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 	    	Docentes d = new Docentes(doc.getNombre(), doc.getApellido(), doc.getDocumento(), doc.getTelefono(), doc.getCorreo(), p, doc.getFechaNac(),doc.getFechaIngreso(),doc.getFechaEgreso());
 	    	d.getFechaEgreso();
 	    	d.getFechaIngreso();
+	    	
 	    	Query q = em.createNativeQuery("select SEQ_ID_DOCENTE.nextval from dual");
 	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
 	    	d.setID(codigo.longValue());
+	    	
 	    	em.persist(d);
 	    	em.flush();
     	}catch(PersistenceException ex){
@@ -153,9 +156,6 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     		
     		Usuarios u = new Usuarios(usu.getNomUsuario(), encriptedPass, usu.getNomCompleto());
     		
-    		Query q = em.createNativeQuery("select SEQ_ID_USUARIO.nextval from dual");
-	    	BigDecimal codigo = (BigDecimal) q.getSingleResult();
-	    	u.setID_USUARIO(codigo.longValue());
 	    	em.persist(u); 		
 	    	em.flush();
     	}catch(PersistenceException ex){

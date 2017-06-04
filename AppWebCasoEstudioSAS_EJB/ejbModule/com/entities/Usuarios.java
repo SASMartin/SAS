@@ -1,11 +1,7 @@
 package com.entities;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Usuarios
@@ -17,7 +13,9 @@ public class Usuarios implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column (name="ID_USUARIO", unique = true)
+	@SequenceGenerator(name="SEQ_ID_USUARIO",sequenceName="SEQ_ID_USUARIO",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ID_USUARIO")
+	@Column(name="ID_USUARIO")
 	private Long ID_USUARIO;
 	private String usuario ;
 	private String contrasenia ;

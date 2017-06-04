@@ -14,11 +14,12 @@ public class Paises implements Serializable {
 
 	@Id
 	@SequenceGenerator(name="SEQ_ID_PAIS",sequenceName="SEQ_ID_PAIS",allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_ID_PAIS")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ID_PAIS")
+	@Column(name="ID_PAIS")
 	private Long ID_PAIS;
 	
 	@Column(nullable=false ,unique = true)
-	   private String NOMBRE ;
+	private String NOMBRE ;
 	
 	public Paises() {
 		super();

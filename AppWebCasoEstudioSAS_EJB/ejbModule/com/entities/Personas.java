@@ -27,8 +27,8 @@ public class Personas implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	   @Id
-	   @SequenceGenerator(name="Personas_GEN", sequenceName = "SEQ_ID_PERSONAS" ,allocationSize=1 )
-	   @GeneratedValue(strategy=GenerationType.SEQUENCE , generator= "Personas_GEN")
+	   @SequenceGenerator(name="PERSONA_GEN", sequenceName = "SEQ_ID_PERSONAS" ,allocationSize=1 )
+	   @GeneratedValue(strategy=GenerationType.SEQUENCE , generator= "PERSONA_GEN")
 	   @Column (name="ID_PERSONA")
 	   private Long codigo;
 	   private String nombre ;
