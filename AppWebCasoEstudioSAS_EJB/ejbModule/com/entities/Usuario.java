@@ -21,11 +21,11 @@ public class Usuario implements Serializable {
 	private String contrasenia ;
 	private String nombre ;
 
-	public Usuario(String nOMUSUARIO, String cONTRASENIA, String nOMBRE) {
+	public Usuario(String nomUsuario, String contrasenia, String nombre) {
 		super();
-		usuario = nOMUSUARIO;
-		contrasenia = cONTRASENIA;
-		nombre = nOMBRE;
+		this.usuario = nomUsuario;
+		this.contrasenia = contrasenia;
+		this.nombre = nombre;
 	}
 	
 	public Long getId_usuario() {
