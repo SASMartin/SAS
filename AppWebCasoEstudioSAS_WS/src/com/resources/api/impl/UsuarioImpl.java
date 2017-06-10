@@ -63,14 +63,19 @@ public class UsuarioImpl {
 	 * @param String: json con parametros de entrada
 	 * @return Response: respuesta Http
 	 */
-	public static Response loginUserImpl(String jsonRequest){
+	public static Response loginUserImpl(String usuario, String contrasenia){
 		String jsonResponse = "";
 		try{
-			//TODO: llamar a ejbean y retornar token
+			EJBInterface ejbInterface = EJBInterface.getInstance();
+			UsuarioDTO usuarioDto = ejbInterface.loginUser(usuario,contrasenia);
+			
+			//Parseo de Objeto a JSON
+			ObjectMapper mapper = new ObjectMapper();
+			jsonResponse = mapper.writeValueAsString(usuarioDto);
 			
 			return Response.ok(jsonResponse, MediaType.APPLICATION_JSON).build();
 		}catch(Exception ex){
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.UNAUTHORIZED).entity(ex.getMessage()).build();
 		}
 	}
 	

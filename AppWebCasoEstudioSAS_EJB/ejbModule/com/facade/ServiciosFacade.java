@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -150,19 +151,13 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
     	try{
     		//Encriptacion 
     		String plainPass = usu.getContrasenia(); 
-    		MessageDigest m = MessageDigest.getInstance("MD5");
-    	    m.update(plainPass.getBytes(),0,plainPass.length());
-    	    String encriptedPass = (new BigInteger(1,m.digest()).toString(16));
-    		
+    		String encriptedPass = encryptPass(plainPass);
     		Usuario u = new Usuario(usu.getNomUsuario(), encriptedPass, usu.getNomCompleto());
     		
 	    	em.persist(u); 		
 	    	em.flush();
     	}catch(PersistenceException ex){
     		throw new Exception("El Usuario ya existe en el sistema");
-    	}catch(NoSuchAlgorithmException ex){
-    		ex.printStackTrace();
-    		throw new Exception("Ha ocurrido un error al intentar crear un Usuario");
     	}catch(Exception ex){
     		ex.printStackTrace();
     		throw new Exception("Ha ocurrido un error al intentar crear un Usuario");
@@ -181,7 +176,47 @@ public class ServiciosFacade implements ServiciosFacadeRemote {
 			}
     	}catch(PersistenceException ex){
     		System.out.println("Error SQL: " + ex.getMessage());
-    	} return usuarioDTO;
+    	} 
+    	return usuarioDTO;
     }
+    
+    @Override
+    public UsuarioDTO loginUsuario(String usuario, String contrasenia) throws Exception{
+    	UsuarioDTO usuarioDTO = null;
+    	try{
+    		TypedQuery<Usuario> query = em.createQuery("FROM Usuario WHERE usuario like :usuario",Usuario.class);
+    		query.setParameter("usuario", usuario);
+    		Usuario usu = query.getSingleResult();
+    		
+    		if(!encryptPass(contrasenia).equals(usu.getContrasenia()))
+    			throw new Exception("Password incorrecto");
+    		
+    		usuarioDTO = new UsuarioDTO(usu.getId_usuario(),usu.getUsuario(), null, usu.getNombre());
+    	}catch(NoResultException ex){
+    		throw new Exception("El usuario no existe en el sistema");
+    	}catch(PersistenceException ex){
+    		System.out.println("Ha ocurrido un error al intentar realizar el login");
+    	} 
+    	return usuarioDTO;
+    }
+    
+    /**
+     *  Funcion auxiliar para encriptar contrasenia
+     *  
+     *  @param contrasenia plana
+     *  @return contrasenia encriptada
+     * @throws Exception 
+     **/
+     private String encryptPass(String plainPass) throws Exception{
+    	 String encriptedPass = null;
+		 try {
+			MessageDigest m = MessageDigest.getInstance("MD5");
+			m.update(plainPass.getBytes(),0,plainPass.length());
+			encriptedPass = (new BigInteger(1,m.digest()).toString(16));
+		 }catch (NoSuchAlgorithmException e) {
+		 	throw new Exception("Ha ocurrido un error en la encriptación");
+		 }
+		 return encriptedPass;
+     }
        
 }

@@ -53,4 +53,8 @@ public class EJBInterface {
 		serviciosFacade.crearUsuario(usuario);
 	}
 	
+	public UsuarioDTO loginUser(String usuario, String contrasenia) throws Exception{
+		return serviciosFacade.loginUsuario(usuario, contrasenia);
+	}
+	
 }

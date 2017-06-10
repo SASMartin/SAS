@@ -30,8 +30,8 @@ public class Usuario {
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response loginUser(@QueryParam("jsonRequest") String jsonRequest) {
-		return UsuarioImpl.loginUserImpl(jsonRequest);
+	public Response loginUser(@QueryParam("usuario") String usuario, @QueryParam("contrasenia") String contrasenia) {
+		return UsuarioImpl.loginUserImpl(usuario, contrasenia);
 	}
 	
 }
