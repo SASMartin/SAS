@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.dto.EstudianteDTO;
 import com.resources.ejbean.EJBInterface;
+import com.resources.jwt.JWTManager;
 
 public class EstudianteImpl {
 
@@ -20,9 +21,12 @@ public class EstudianteImpl {
 	 * @param String: json con parametros de entrada
 	 * @return Response: respuesta Http
 	 */
-	public static Response getEstudiantesImpl(String jsonRequest) {
+	public static Response getEstudiantesImpl(String token, String usuario) {
 		String jsonResponse = "";
 		try{
+			//Valido token de acceso
+			JWTManager.validateToken(token, usuario);
+			
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			List<EstudianteDTO> listaEstudiantes = ejbInterface.getEstudiantesEJB();
 			
@@ -42,13 +46,16 @@ public class EstudianteImpl {
 	 * @param String: json con parametros de entrada
 	 * @return Response: respuesta Http
 	 */
-	public static Response createEstudianteImpl(String jsonRequest) {
+	public static Response createEstudianteImpl(String token, String usuario, String jsonEstudiante) {
 		try{
+			//Valido token de acceso
+			JWTManager.validateToken(token, usuario);
+			
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			
 			//Parseo de JSON a Objeto
 			ObjectMapper objectMapper = new ObjectMapper();
-			EstudianteDTO estudiante = objectMapper.readValue(jsonRequest, new TypeReference<EstudianteDTO>() { });
+			EstudianteDTO estudiante = objectMapper.readValue(jsonEstudiante, new TypeReference<EstudianteDTO>() { });
 			
 			ejbInterface.createEstudiante(estudiante);
 			

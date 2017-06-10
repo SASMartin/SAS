@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response;
 import com.dto.PaisDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.resources.ejbean.EJBInterface;
+import com.resources.jwt.JWTManager;
 
 public class PaisImpl {
 
@@ -17,9 +18,12 @@ public class PaisImpl {
 	 * @param String: json con parametros de entrada
 	 * @return Response: respuesta Http
 	 */
-	public static Response getPaisesImpl(String jsonRequest){
+	public static Response getPaisesImpl(String token, String usuario){
 		String jsonResponse = "";
 		try{
+			//Valido token de acceso
+			JWTManager.validateToken(token, usuario);
+			
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			List<PaisDTO> listaPaises = ejbInterface.getPaisesEJB();
 			

@@ -16,21 +16,26 @@ public class Usuario {
 	@GET
 	@Path("/getUsuarios")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUsuarios(@QueryParam("jsonRequest") String jsonRequest) {
-		return UsuarioImpl.getUsuariosImpl(jsonRequest);
+	public Response getUsuarios(
+			@QueryParam("token") String token, 
+			@QueryParam("usuario") String usuario) {
+		return UsuarioImpl.getUsuariosImpl(token, usuario);
 	}
 	
 	@POST
 	@Path("/createUser")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createUser(@QueryParam("jsonRequest") String jsonRequest) {
-		return UsuarioImpl.createUserImpl(jsonRequest);
+	public Response createUser(
+			@QueryParam("jsonUsuario") String jsonUsuario) {
+		return UsuarioImpl.createUserImpl(jsonUsuario);
 	}
 	
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response loginUser(@QueryParam("usuario") String usuario, @QueryParam("contrasenia") String contrasenia) {
+	public Response loginUser(
+			@QueryParam("usuario") String usuario, 
+			@QueryParam("contrasenia") String contrasenia) {
 		return UsuarioImpl.loginUserImpl(usuario, contrasenia);
 	}
 	

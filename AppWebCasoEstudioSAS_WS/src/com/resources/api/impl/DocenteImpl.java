@@ -10,6 +10,7 @@ import com.dto.DocenteDTO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.resources.ejbean.EJBInterface;
+import com.resources.jwt.JWTManager;
 
 public class DocenteImpl {
 
@@ -19,9 +20,12 @@ public class DocenteImpl {
 	 * @param String: json con parametros de entrada
 	 * @return Response: respuesta Http
 	 */
-	public static Response getDocentesImpl(String jsonRequest) {
+	public static Response getDocentesImpl(String token, String usuario) {
 		String jsonResponse = "";
 		try{
+			//Valido token de acceso
+			JWTManager.validateToken(token, usuario);
+			
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			List<DocenteDTO> listaDocentes = ejbInterface.getDocentesEJB();
 			
@@ -41,13 +45,16 @@ public class DocenteImpl {
 	 * @param String: json con parametros de entrada
 	 * @return Response: respuesta Http
 	 */
-	public static Response createDocenteImp(String jsonRequest) {
+	public static Response createDocenteImp(String token, String usuario, String jsonDocente) {
 		try{
+			//Valido token de acceso
+			JWTManager.validateToken(token, usuario);
+			
 			EJBInterface ejbInterface = EJBInterface.getInstance();
 			
 			//Parseo de JSON a Objeto
 			ObjectMapper objectMapper = new ObjectMapper();
-			DocenteDTO docente = objectMapper.readValue(jsonRequest, new TypeReference<DocenteDTO>() { });
+			DocenteDTO docente = objectMapper.readValue(jsonDocente, new TypeReference<DocenteDTO>() { });
 			
 			ejbInterface.createDocente(docente);
 			

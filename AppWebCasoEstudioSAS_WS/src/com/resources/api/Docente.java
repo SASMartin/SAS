@@ -16,15 +16,20 @@ public class Docente {
 	@GET
 	@Path("/getDocentes")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getDocentes(@QueryParam("jsonRequest") String jsonRequest) {
-		return DocenteImpl.getDocentesImpl(jsonRequest);
+	public Response getDocentes(
+			@QueryParam("token") String token, 
+			@QueryParam("usuario") String usuario) {
+		return DocenteImpl.getDocentesImpl(token, usuario);
 	}
 	
 	@POST
 	@Path("/createDocente")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createDocente(@QueryParam("jsonRequest") String jsonRequest) {
-		return DocenteImpl.createDocenteImp(jsonRequest);
+	public Response createDocente(
+			@QueryParam("token") String token,
+			@QueryParam("usuario") String usuario, 
+			@QueryParam("jsonDocente") String jsonDocente) {
+		return DocenteImpl.createDocenteImp(token, usuario, jsonDocente);
 	}
 	
 }

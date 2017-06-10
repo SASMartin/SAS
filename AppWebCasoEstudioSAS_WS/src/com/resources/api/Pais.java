@@ -15,8 +15,10 @@ public class Pais {
 	@GET
 	@Path("/getPaises")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getPaises(@QueryParam("jsonRequest") String jsonRequest) {
-		return PaisImpl.getPaisesImpl(jsonRequest);
+	public Response getPaises(
+			@QueryParam("token") String token, 
+			@QueryParam("usuario") String usuario) {
+		return PaisImpl.getPaisesImpl(token, usuario);
 	}
 	
 }
